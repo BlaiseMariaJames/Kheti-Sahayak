@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kheti Sahayak</title>
+    <link rel="shortcut icon" href="../media/Kheti Sahayak Icon.ico" type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' crossorigin="anonymous">
+    <link rel="stylesheet" href="CSS/Login Signup Styles.css">
+    <link rel="stylesheet" href="/CSS/Application Styles.css">
+    <script src="Javascript/Login Signup Script.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <div class="box">
+            <div class="inner-box">
+                <div class="forms-wrap">
+                    <form action="/login" method="post" autocomplete="off" class="sign-in">
+                        <div class="logo">
+                            <div class="message mandatory">
+                                <%- include('../partials/Flash') %>
+                            </div>
+                            <img src="https://res.cloudinary.com/dtwgxcqkr/image/upload/v1692472989/Kheti%20Sahayak%20Related%20Media/Kheti_Sahayak_Logo.png"
+                                alt="Kheti Sahayak Logo" height="80px" width="80px" crossorigin>
+                            <h3>Kheti Sahayak</h3>
+                        </div>
+                        <div class="heading">
+                            <h2>Welcome Back</h2>
+                            <h6>Not registered yet?</h6>
+                            <a href="#" class="toggle">Sign up</a>
+                        </div>
+                        <div class="actual-form">
+                            <div class="input-wrap">
+                                <input type="text" class="input-field text-input" name="username" id="login-username"
+                                    required>
+                                <label for="login-username">Enter Username<span class="mandatory">*</span> : </label>
+                            </div>
+                            <div class="input-wrap">
+                                <input type="password" class="input-field text-input" name="password"
+                                    id="login-password" required>
+                                <label for="login-password">Enter Password<span class="mandatory">*</span> : </label>
+                            </div>
+                            <input type="submit" value="Login" class="form-btn">
+                            <a href="/stories" class="form-btn"
+                                style="text-decoration: none; display: flex; align-items: center; justify-content: center;">Continue
+                                without login</a>
+                        </div>
+                    </form>
+                    <form action="/register" method="post" autocomplete="off" class="sign-up">
+                        <div class="logo">
+                            <img src="https://res.cloudinary.com/dtwgxcqkr/image/upload/v1692472989/Kheti%20Sahayak%20Related%20Media/Kheti_Sahayak_Logo.png"
+                                alt="Kheti Sahayak Logo" height="80px" width="80px" crossorigin>
+                            <h3>Kheti Sahayak</h3>
+                        </div>
+                        <div class="heading">
+                            <h2>Get Started</h2>
+                            <h6>Already have an account?</h6>
+                            <a href="#" class="toggle">Sign in</a>
+                        </div>
+                        <div class="actual-form">
+                            <div class="input-wrap">
+                                <input type="text" class="input-field text-input" name="register[username]"
+                                    id="register-username" required>
+                                <label for="register-username">Enter Username<span class="mandatory">*</span> : </label>
+                            </div>
+                            <div class="input-wrap">
+                                <input type="email" class="input-field text-input" name="register[email]"
+                                    id="register-email" required>
+                                <label for="register-email">Enter Email<span class="mandatory">*</span> : </label>
+                            </div>
+                            <div class="input-wrap">
+                                <input type="password" class="input-field text-input" name="register[password]"
+                                    id="register-password" required>
+                                <label for="register-password">Enter Password<span class="mandatory">*</span> : </label>
+                            </div>
+                            <input type="submit" value="Create Account" class="form-btn">
+                        </div>
+                    </form>
+                </div>
+                <div class="carousel lazy-bg" data-bg="image.jpg">
+                    <div class="text-wrap">
+                        <div class="text-group">
+                            <h2>Crop Yield Prediction</h2>
+                            <h2>Fertilizer Recommendation</h2>
+                            <h2>Plant Disease Detection</h2>
+                            <h2>Farmer's Community</h2>
+                            <h2>Live Conversation</h2>
+                        </div>
+                    </div>
+                    <div class="bullets">
+                        <span data-value="1" class="active blt-1"></span>
+                        <span data-value="2" class="blt-2"></span>
+                        <span data-value="3" class="blt-3"></span>
+                        <span data-value="4" class="blt-4"></span>
+                        <span data-value="5" class="blt-5"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

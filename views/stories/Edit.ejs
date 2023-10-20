@@ -1,0 +1,90 @@
+<% layout('/layouts/Boiler Plate') %>
+    <div class="row d-flex justify-content-center p-2">
+        <div class="card bg-light p-3 border border-success rounded-3 width-forty">
+            <h1 class="text-center mb-3">Edit a story</h1>
+            <div class="col-lg-10 offset-lg-1">
+                <form action="/stories?_method=PATCH" method="post" class="d-inline needs-validation" novalidate>
+                    <% if(story.images.length> 0) { %>
+                        <div id="storyCarousel" class="carousel slide mt-2 mb-3" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <% story.images.forEach((image, index)=> { %>
+                                    <div class="carousel-item <%= (index === 0) ? 'active' : '' %>"
+                                        data-bs-interval="5000">
+                                        <a href="<%=image.url%>"><img src="<%=image.cardImage%>" alt=""
+                                                class="d-block w-100 pointer" title="Click to view Image"
+                                                crossorigin></a>
+                                    </div>
+                                    <% }); %>
+                            </div>
+                            <% if(story.images.length> 1) { %>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#storyCarousel"
+                                    data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#storyCarousel"
+                                    data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                                <% } %>
+                        </div>
+                        <% } else {%>
+                            <img src="https://res.cloudinary.com/dtwgxcqkr/image/upload/v1675496482/YelpCamp%20Related%20Media/No_Image_Available_onn3wa.webp"
+                                alt="No Image Available" class="img-fluid mt-2" crossorigin>
+                            <% } %>
+                                <p class="mb-3 mt-2 mandatory">* Mandatory Fields</p>
+                                <div class="mb-3 d-none">
+                                    <label for="id" class="form-label">Registration Id : </label>
+                                    <input type="text" class="form-control" name="id" id="id" value="<%=story._id%>"
+                                        readonly>
+                                </div>
+                                <div class="mb-3 d-none">
+                                    <label for="author" class="form-label">Author Id : </label>
+                                    <input type="text" class="form-control" name="story[author]" id="author"
+                                        value="<%=story.author._id%>" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="title" class="form-label">Story Title<span class="mandatory">*</span> :
+                                    </label>
+                                    <input type="text" class="form-control" name="story[title]" id="title"
+                                        value="<%=story.title%>" required>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid title.
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="location" class="form-label">Story Location (Optional) : </label>
+                                    <input type="text" class="form-control" name="story[location]" id="location" <%
+                                        if(story.location) { %>
+                                    value="<%=story.location%>"
+                                        <% } else { %>
+                                            placeholder="Location is not known"
+                                            <% } %> >
+                                                <div class="valid-feedback">
+                                                    Looks good!
+                                                </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description" class="form-label">Story Description<span
+                                            class="mandatory">*</span> :
+                                    </label>
+                                    <textarea class="form-control text-justify" name="story[description]"
+                                        id="description" cols="80" rows="10" required><%=story.description %></textarea>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid description.
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-success btn-sm">Apply Changes</button>
+                                <button type="reset" class="btn btn-danger btn-sm">Reset</button>
+                </form>
+                <a href="/stories" class="btn btn-secondary btn-sm">Go Back</a>
+            </div>
+        </div>
+    </div>

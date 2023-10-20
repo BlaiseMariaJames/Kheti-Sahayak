@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kheti Sahayak | Stories</title>
+    <link rel="icon" type="image/x-icon" href="/Media/Kheti Sahayak Icon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        label,
+        .label {
+            font-weight: bold;
+        }
+
+        .read-more {
+            color: grey;
+            display: block;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column vh-100">
+    <%- include('../partials/Navbar') %>
+        <main class="container mt-3 mb-3">
+            <%- include('../partials/Flash') %>
+                <br><br>
+                <div class="d-flex justify-content-center">
+                    <div class="card mb-5 border border-success rounded-pill bg-light width-forty">
+                        <div class="card-body">
+                            <div class="card-text d-flex flex-column p-2 text-center">
+                                <p class="align-self-center">Share your farming stories with the world!</p>
+                                <a href="/stories/new" class="btn btn-success btn-sm mb-3 rounded-pill">Start a New
+                                    Story</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% if(!errorMessage) { %>
+                    <% for (let story of stories) { %>
+                        <div class="d-flex justify-content-center" id="<%=story._id%>">
+                            <div class="card mb-5 p-3 rounded-3 border border-success bg-light" style="width: 45rem;">
+                                <div class="row">
+                                    <div class="card-body">
+                                        <div class="d-flex flex-wrap flex-row mb-2">
+                                            <h1 class="card-title me-auto">
+                                                <%=story.title%>
+                                            </h1>
+                                            <% if(currentUser && currentUser.equals(story.author)) { %>
+                                                <div class="align-self-center">
+                                                    <a href="/stories/<%=story._id%>/manage"
+                                                        class="card-link btn rounded-pill btn-info btn-sm align-self-center">Manage</a>
+                                                    <a href="/stories/<%=story._id%>/edit"
+                                                        class="card-link btn rounded-pill btn-warning btn-sm align-self-center">Edit</a>
+                                                    <a href="/stories/<%=story._id%>/remove"
+                                                        class="card-link btn rounded-pill btn-danger btn-sm align-self-center">Delete</a>
+                                                </div>
+                                                <% } %>
+                                        </div>
+                                        <div class="card-text">
+                                            <small class="text-muted">
+                                                <%=story.location%>
+                                            </small>
+                                            <p class="mt-3">
+                                                <b>Suggested By:</b>
+                                                <%=story.author.username%>
+                                            </p>
+                                            <p class="mt-3 text-justify">
+                                                <% if(story.description.length < 150) { %>
+                                                    <%=story.description%>
+                                                        <% } else { %>
+                                                            <%=story.description.slice(0, 150)%><span class="extend hide"><%=story.description.slice(150)%></span><br><span class="text-end read-more">... see more</span>
+                                                                <% } %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <% if(story.images.length> 0) { %>
+                                        <div id="storyCarousel" class="carousel slide card-img-top"
+                                            data-bs-ride="carousel">
+                                            <div class="carousel-inner">
+                                                <% story.images.forEach((image, index)=> { %>
+                                                    <div class="carousel-item <%= (index === 0) ? 'active' : '' %>"
+                                                        data-bs-interval="5000">
+                                                        <a href="<%=image.url%>"><img src="<%=image.url%>" alt=""
+                                                                class="story d-block w-100 pointer" height="450px"
+                                                                title="Click to view Image" crossorigin></a>
+                                                    </div>
+                                                    <% }); %>
+                                            </div>
+                                            <% if(story.images.length> 1) { %>
+                                                <button class="carousel-control-prev" type="button"
+                                                    data-bs-target="#storyCarousel" data-bs-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Previous</span>
+                                                </button>
+                                                <button class="carousel-control-next" type="button"
+                                                    data-bs-target="#storyCarousel" data-bs-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Next</span>
+                                                </button>
+                                                <% } %>
+                                        </div>
+                                        <% } else {%>
+                                            <img src="https://res.cloudinary.com/dtwgxcqkr/image/upload/v1675496482/YelpCamp%20Related%20Media/No_Image_Available_onn3wa.webp"
+                                                alt="No Image Available" class="img-fluid" height="450px" crossorigin>
+                                            <% } %>
+                                </div>
+                                <div class="row p-3">
+                                    <div class="card mt-3">
+                                        <div class="card-body">
+                                            <h3>Leave a Comment</h3>
+                                            <% if(currentUser) { %>
+                                                <form action="/stories/<%=story._id%>/comments" method="post"
+                                                    class="needs-validation" novalidate>
+                                                    <div class="mb-3">
+                                                        <textarea class="form-control text-justify" name="comment[body]"
+                                                            id="body" cols="30" rows="3"
+                                                            placeholder="Give us your feedback" required></textarea>
+                                                        <div class="valid-feedback">
+                                                            Looks good!
+                                                        </div>
+                                                        <div class="invalid-feedback">
+                                                            Please provide us your feeback.
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                                                    <button type="reset" class="btn btn-danger btn-sm">Reset</button>
+                                                </form>
+                                                <% } else { %>
+                                                    <div
+                                                        class="card-body d-flex justify-content-center align-items-center">
+                                                        <a class="btn btn-primary" href="/">Login / Register to
+                                                            Continue</a>
+                                                    </div>
+                                                    <% } %>
+                                        </div>
+                                    </div>
+                                    <div class="card mt-3">
+                                        <div class="card-body">
+                                            <h2>Comments</h2>
+                                            <% if(story.comments.length) { %>
+                                                <% for(let comment of story.comments) { %>
+                                                    <div class="card mb-3">
+                                                        <div
+                                                            class="card-header d-flex flex-wrap gap-1 justify-content-between">
+                                                            <b>
+                                                                <%=comment.author.username%>
+                                                            </b>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <p class="comment">
+                                                                <%= comment.body %>
+                                                            </p>
+                                                            <% if(currentUser && currentUser.equals(comment.author)) {
+                                                                %>
+                                                                <form
+                                                                    action="/stories/<%=story._id%>/comments/<%=comment._id%>?_method=DELETE"
+                                                                    method="post">
+                                                                    <button
+                                                                        class="card-link btn btn-danger btn-sm">Delete</button>
+                                                                </form>
+                                                                <% } %>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+                                                        <% } else { %>
+                                                            <p>Be the first to comment!</p>
+                                                            <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                            <% } else { %>
+                                <p class="text-center">
+                                    <%= errorMessage %>
+                                </p>
+                                <% } %>
+        </main>
+        <%- include('../partials/Footer') %>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+                crossorigin="anonymous">
+                </script>
+            <script>
+                let extendTexts = document.querySelectorAll(".extend");
+                let readMoreBtns = document.querySelectorAll(".read-more");
+                readMoreBtns.forEach((readMore, index) => {
+                    readMore.addEventListener("click", function () {
+                        this.style.display = 'none';
+                        extendTexts[index].classList.toggle("hide");
+                    });
+                });
+            </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a href="/" class="navbar-brand">Kheti Sahayak</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <div class="navbar-nav">
+                <a class="nav-link" href="/stories">Stories</a>
+                <a class="nav-link" href="/crops/crop-recommendation">Crop Recommendation</a>
+                <a class="nav-link" href="/crops/fertilizer-recommendation">Fertilizer Recommendation</a>
+                <a class="nav-link" href="/crops/plant-disease-detection">Plant Disease Detection</a>
+            </div>
+            <div class="navbar-nav ms-auto">
+                <% if(!currentUser) { %>
+                    <a class="nav-link" href="/">Login / Register</a>
+                    <% } else { %>
+                        <a class="navbar-brand">Welcome, <%=currentUser.username%></a>
+                        <form action="/logout" method="post" class="nav-link">
+                            <button type="submit" class="btn btn-danger btn-sm">Logout</button>
+                        </form>
+                        <% } %>
+            </div>
+        </div>
+    </div>
+</nav>
