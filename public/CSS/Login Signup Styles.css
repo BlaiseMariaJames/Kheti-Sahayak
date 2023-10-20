@@ -1,0 +1,358 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+}
+
+main {
+    width: 100%;
+    padding: 2rem;
+    overflow: hidden;
+    min-height: 100vh;
+    background-color: #77dd76;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box {
+    width: 100%;
+    height: 640px;
+    max-width: 1020px;
+    position: relative;
+    border-radius: 3.3rem;
+    background-color: #fff;
+    box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.27);
+}
+
+.inner-box {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    width: calc(100% - 4.1rem);
+    height: calc(100% - 4.1rem);
+    transform: translate(-50%, -50%);
+
+}
+
+.forms-wrap {
+    top: 0;
+    left: 0;
+    width: 45%;
+    height: 100%;
+    position: absolute;
+    transition: 0.8s ease-in-out;
+
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+}
+
+main.sign-up-mode .forms-wrap {
+    left: 55%;
+}
+
+.forms-wrap form {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    max-width: 260px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    grid-row: 1/2;
+    grid-column: 1/2;
+    transition: opacity 0s 0.45s ease;
+}
+
+form.sign-up {
+    opacity: 0;
+    pointer-events: none;
+}
+
+main.sign-up-mode form.sign-in {
+    opacity: 0;
+    pointer-events: none;
+}
+
+main.sign-up-mode form.sign-up {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+}
+
+.logo img {
+    margin-top: 0.3em;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 0.3rem;
+}
+
+.logo h3 {
+    color: #151111;
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+}
+
+.heading h2 {
+    font-weight: 600;
+    color: #151111;
+    font-size: 2.1rem;
+}
+
+.heading h6 {
+    display: inline;
+    color: #bababa;
+    font-weight: 400;
+    font-size: 0.75rem;
+}
+
+.toggle {
+    color: #151111;
+    font-weight: 500;
+    transition: 0.3s;
+    font-size: 0.75rem;
+    text-decoration: none;
+}
+
+.toggle:hover {
+    color: #8371fd;
+}
+
+.input-wrap {
+    height: 37px;
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.input-field {
+    padding: 0;
+    height: 100%;
+    font-size: 0.95rem;
+    position: absolute;
+
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.text-input {
+    width: 100%;
+    border-bottom: 1px solid #bbb;
+}
+
+.text-input.active {
+    border-bottom-color: #151111;
+}
+
+.input-wrap label {
+    top: 50%;
+    color: #bbb;
+    transition: 0.4s;
+    font-size: 0.95rem;
+    position: absolute;
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
+.input-wrap .input-field.active+label {
+    top: -2px;
+    font-size: 0.75rem;
+}
+
+.form-btn {
+    width: 100%;
+    height: 43px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0.8rem;
+    display: inline-block;
+    background-color: #151111;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-btn:hover {
+    background-color: #8371fd;
+}
+
+.text {
+    color: #bbb;
+    font-size: 0.7rem;
+    text-align: center;
+}
+
+.text a {
+    color: #151111;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.text a:hover {
+    color: #8371fd;
+}
+
+.lazy-bg {
+    width: 100%;
+    background-color: #ccc;
+}
+
+.carousel {
+    top: 0;
+    left: 45%;
+    width: 55%;
+    height: 100%;
+    padding: 20px;
+    overflow: hidden;
+    position: absolute;
+    border-radius: 2rem;
+    background-size: cover;
+    background-position: center;
+    transition: left 0.5s ease-in-out;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+main.sign-up-mode .carousel {
+    left: 0%;
+}
+
+.text-wrap {
+    overflow: hidden;
+    max-height: 2.2rem;
+    margin-bottom: 2.5rem;
+}
+
+.text-group {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    transition: 0.5s ease-in-out;
+}
+
+.text-group h2 {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+}
+
+.bullets {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bullets span {
+    width: 0.5rem;
+    height: 0.5rem;
+    display: block;
+    margin: 0 0.25rem;
+    border-radius: 50%;
+    background-color: #aaa;
+    transition: 0.3s ease-in-out;
+}
+
+.bullets span.active {
+    width: 1.1rem;
+    border-radius: 1rem;
+    background-color: #fff;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .box {
+        height: auto;
+        max-width: 550px;
+        overflow: hidden;
+    }
+
+    .inner-box {
+        padding: 2rem;
+        width: revert;
+        height: revert;
+        transform: none;
+        position: static;
+    }
+
+    .forms-wrap {
+        width: 100%;
+        height: auto;
+        position: revert;
+    }
+
+    .forms-wrap form {
+        max-width: revert;
+        transition: transform 0.8s ease-in-out, opacity 0.5s 0.5s linear;
+    }
+
+    .forms-wrap form.sign-up {
+        transform: translateX(120%);
+    }
+
+    main.sign-up-mode form.sign-in {
+        transform: translateX(-120%);
+    }
+
+    main.sign-up-mode form.sign-up {
+        transform: translateX(0%);
+    }
+
+    .heading {
+        padding: 2rem 0;
+    }
+
+    .carousel {
+        width: 100%;
+        height: auto;
+        margin-top: 10px;
+        position: revert;
+    }
+
+    .text-wrap {
+        margin-bottom: 0.5rem;
+    }
+
+    .text-group h2 {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 321px) {
+
+    * {
+        font-size: smaller;
+    }
+
+    .text-group h2 {
+        font-size: 0.6rem;
+    }
+}

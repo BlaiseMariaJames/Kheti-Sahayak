@@ -1,0 +1,92 @@
+<% layout('/layouts/Boiler Plate') %>
+    <div class="row d-flex justify-content-center p-2">
+        <div class="card bg-light p-3 border border-success rounded-3 width-forty">
+            <h1 class="text-center mb-3">Manage story images</h1>
+            <div class="col-lg-10 offset-lg-1">
+                <form action="/stories?_method=PUT" method="post" class="needs-validation d-inline mt-2" novalidate
+                    enctype="multipart/form-data">
+                    <div class="mb-3 d-none">
+                        <label for="id" class="form-label">Registration Id : </label>
+                        <input type="text" class="form-control" name="id" id="id" value="<%=story._id%>" readonly>
+                    </div>
+                    <div class="mb-3 d-none">
+                        <label for="author" class="form-label">Author Id : </label>
+                        <input type="text" class="form-control" name="story[author]" id="author"
+                            value="<%=story.author._id%>" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Story Title : </label>
+                        <input type="text" class="form-control" name="story[title]" id="title"
+                            placeholder="Enter story title" value="<%=story.title%>" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="images" class="form-label">Select And Delete Story Images : </label>
+                        <% if(story.images.length> 0) { %>
+                            <div class="card p-1">
+                                <% story.images.forEach(function(image, index) { %>
+                                    <% if(index % 3===0) { %>
+                                        <div class="d-flex flex-row justify-content-center">
+                                            <% if(story.images[index]) { %>
+                                                <div class="card-header deleteImage bg-light border rounded w-50">
+                                                    <input type="checkbox" name="deletestoryImages[]"
+                                                        class="form-check-input"
+                                                        value="<%=story.images[index].filename%>">
+                                                    <a href="<%=story.images[index].url%>" title="Click to view Image">
+                                                        <img src="<%=story.images[index].thumbnail%>"
+                                                            class="img-thumbnail" alt="" crossorigin>
+                                                    </a>
+                                                </div>
+                                                <% } %>
+                                                    <% if(story.images[index+1]) { %>
+                                                        <div
+                                                            class="card-header deleteImage bg-light border rounded w-50">
+                                                            <input type="checkbox" name="deletestoryImages[]"
+                                                                class="form-check-input"
+                                                                value="<%=story.images[index+1].filename%>">
+                                                            <a href="<%=story.images[index+1].url%>"
+                                                                title="Click to view Image">
+                                                                <img src="<%=story.images[index+1].thumbnail%>"
+                                                                    class="img-thumbnail" alt="" crossorigin>
+                                                            </a>
+                                                        </div>
+                                                        <% } %>
+                                                            <% if(story.images[index+2]) { %>
+                                                                <div
+                                                                    class="card-header deleteImage bg-light border rounded w-50">
+                                                                    <input type="checkbox" name="deletestoryImages[]"
+                                                                        class="form-check-input"
+                                                                        value="<%=story.images[index+2].filename%>">
+                                                                    <a href="<%=story.images[index+2].url%>"
+                                                                        title="Click to view Image">
+                                                                        <img src="<%=story.images[index+2].thumbnail%>"
+                                                                            class="img-thumbnail" alt="" crossorigin>
+                                                                    </a>
+                                                                </div>
+                                                                <% } %>
+                                        </div>
+                                        <% } %>
+                                            <% }); %>
+                            </div>
+                            <% } else { %>
+                                <input type="text" class="form-control" name="" id="" value="This story has no images."
+                                    readonly>
+                                <% } %>
+                    </div>
+                    <div class="mb-3">
+                        <label for="images" class="form-label">Add Some More Story Images : </label>
+                        <input type="file" class="form-control" name="story[images]" id="images"
+                            accept="image/avif, image/gif, image/jpg, image/jpeg, image/png, image/webp" multiple>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div>
+                        <label for="submit" class="form-label mb-3">To edit, click on submit</label>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                    <button type="reset" class="btn btn-danger btn-sm">Reset</button>
+                </form>
+                <a href="/stories" class="btn btn-secondary btn-sm">Go Back</a>
+            </div>
+        </div>
+    </div>

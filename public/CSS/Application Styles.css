@@ -1,0 +1,31 @@
+.width-forty {
+    width: 40rem;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.mandatory {
+    color: red;
+}
+
+.deleteImage {
+    margin: 5px;
+    cursor: pointer;
+}
+
+.comment {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.errorTrace {
+    font-size: 2.25vw;
+}
+
+@media screen and (min-width : 768px) {
+    .errorTrace {
+        font-size: 1vmax;
+    }
+}
