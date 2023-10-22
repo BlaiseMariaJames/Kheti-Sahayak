@@ -3,6 +3,13 @@
     <summary><h1 style="display: inline-block;">Update History</h1></summary>
   </ul>
 </div>
+
+<h3>Feature 2: Crop Recommendation FRONT END Completion with bugs fixed - October 22nd 2023</h3>
+
+_Committed on October 22, 2023_
+
+1. Update Crop Recommendation view.
+2. Add Select Districts.js file.
    
 <h3>Feature 1: Stories Completion with bugs fixed - October 20th 2023</h3>
 
