@@ -1,4 +1,82 @@
 <% layout('/layouts/Boiler Plate') %>
-    <div class="bg-light border border-success rounded-3 p-2">
-        <p class="text-center" style="margin: auto;">Feature to be released soon!</p>
+    <div class="row d-flex justify-content-center p-2" style="flex: 1;">
+        <div class="card bg-light p-3 border border-success rounded-3 width-forty">
+            <h2 class="text-center mb-3">Find the most suitable fertilizer for your crop</h2>
+            <div class="col-lg-10 offset-lg-1">
+                <p class="mb-3 mt-2 mandatory">* Mandatory Fields</p>
+                <form action="/crops/fertilizer-recommendation" method="post" class="d-inline needs-validation"
+                    novalidate>
+                    <div class="mb-3">
+                        <label for="nitrogen" class="form-label">Nitrogen (N)<span class="mandatory">*</span> : </label>
+                        <input type="number" class="form-control" name="fertilizer_recommend[nitrogen]" id="nitrogen"
+                            placeholder="Enter value of nitrogen" step="1" min="0" max="100" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please provide a valid nitrogen value.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phosphorous" class="form-label">Phosphorous (P)<span class="mandatory">*</span> :</label>
+                        <input type="number" class="form-control" name="fertilizer_recommend[phosphorous]" id="phosphorous"
+                            placeholder="Enter value of phosphorous" step="1" min="0" max="100" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please provide a valid phosphorous value.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pottasium" class="form-label">Pottasium (K)<span class="mandatory">*</span> :</label>
+                        <input type="number" class="form-control" name="fertilizer_recommend[pottasium]" id="pottasium"
+                            placeholder="Enter value of pottasium" step="1" min="0" max="100" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please provide a valid pottasium value.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="crop" class="form-label">Select Crop<span class="mandatory">*</span> :</label>
+                        <select class="form-select" name="fertilizer_recommend[crop]" id="crop" required>
+                            <option value="">-- select one --</option>
+                            <option value="rice">Rice</option>
+                            <option value="maize">Maize</option>
+                            <option value="chickpea">Chickpea</option>
+                            <option value="kidneybeans">Kidneybeans</option>
+                            <option value="pigeonpeas">Pigeonpeas</option>
+                            <option value="mothbeans">Mothbeans</option>
+                            <option value="mungbean">Mungbean</option>
+                            <option value="blackgram">Blackgram</option>
+                            <option value="lentil">Lentil</option>
+                            <option value="pomegranate">Pomegranate</option>
+                            <option value="banana">Banana</option>
+                            <option value="mango">Mango</option>
+                            <option value="grapes">Grapes</option>
+                            <option value="watermelon">Watermelon</option>
+                            <option value="muskmelon">Muskmelon</option>
+                            <option value="apple">Apple</option>
+                            <option value="orange">Orange</option>
+                            <option value="papaya">Papaya</option>
+                            <option value="coconut">Coconut</option>
+                            <option value="cotton">Cotton</option>
+                            <option value="jute">Jute</option>
+                            <option value="coffee">Coffee</option>
+                        </select>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please select a valid crop.
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-sm">Recommend</button>
+                    <button type="reset" class="btn btn-danger btn-sm">Reset</button>
+                </form>
+                <a href="/stories" class="btn btn-secondary btn-sm">Go Back</a>
+            </div>
+        </div>
     </div>
