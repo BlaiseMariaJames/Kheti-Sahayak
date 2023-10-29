@@ -1,4 +1,32 @@
 <% layout('/layouts/Boiler Plate') %>
-    <div class="bg-light border border-success rounded-3 p-2">
-        <p class="text-center" style="margin: auto;">Feature to be released soon!</p>
+    <div class="row d-flex justify-content-center p-2" style="flex: 1;">
+        <div class="card bg-light p-3 border border-success rounded-3 width-forty">
+            <h3 class="text-center mb-3">Identify the disease affecting your plant</h3>
+            <div class="col-lg-10 offset-lg-1">
+                <p class="mb-3 mt-2 mandatory">* Mandatory Fields</p>
+                <form action="/crops/plant-disease-detection" method="post" class="d-inline needs-validation"
+                    novalidate enctype="multipart/form-data">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <img src="https://res.cloudinary.com/dtwgxcqkr/image/upload/v1675496482/YelpCamp%20Related%20Media/No_Image_Available_onn3wa.webp"
+                            alt="No Image Available" class="img-fluid my-2" width="50%" height="60%" crossorigin>
+                    </div>
+                    <div class="mb-3">
+                        <label for="images" class="form-label">Upload Leaf Image<span class="mandatory">*</span> :
+                        </label>
+                        <input type="file" class="form-control" name="crop[image]" id="image"
+                            accept="image/avif, image/gif, image/jpg, image/jpeg, image/png, image/webp" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please provide a valid leaf image of crop.
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-sm">Detect</button>
+                    <button type="reset" class="btn btn-danger btn-sm">Reset</button>
+                </form>
+                <a href="/stories" class="btn btn-secondary btn-sm">Go Back</a>
+            </div>
+        </div>
     </div>
+    <script src="/Javascript/Update Image.js"></script>

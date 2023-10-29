@@ -1,14 +1,14 @@
 <% layout('/layouts/Boiler Plate') %>
     <div class="row d-flex justify-content-center p-2" style="flex: 1;">
         <div class="card bg-light p-3 border border-success rounded-3 width-forty">
-            <h2 class="text-center mb-3">Find the most suitable crop for your soil</h2>
+            <h3 class="text-center mb-3">Find the most suitable crop for your soil</h3>
             <div class="col-lg-10 offset-lg-1">
                 <p class="mb-3 mt-2 mandatory">* Mandatory Fields</p>
                 <form action="/crops/crop-recommendation" method="post" class="d-inline needs-validation" novalidate>
                     <div class="mb-3">
                         <label for="nitrogen" class="form-label">Nitrogen (N)<span class="mandatory">*</span> : </label>
                         <input type="number" class="form-control" name="crop_recommend[nitrogen]" id="nitrogen"
-                            placeholder="Enter value of nitrogen" step="1" min="0" max="100" required>
+                            placeholder="Enter value of nitrogen (0-100)" step="1" min="0" max="100" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
@@ -19,7 +19,7 @@
                     <div class="mb-3">
                         <label for="phosphorous" class="form-label">Phosphorous (P)<span class="mandatory">*</span> : </label>
                         <input type="number" class="form-control" name="crop_recommend[phosphorous]" id="phosphorous"
-                            placeholder="Enter value of phosphorous" step="1" min="0" max="100" required>
+                            placeholder="Enter value of phosphorous (0-100)" step="1" min="0" max="100" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
@@ -30,7 +30,7 @@
                     <div class="mb-3">
                         <label for="pottasium" class="form-label">Pottasium (K)<span class="mandatory">*</span> : </label>
                         <input type="number" class="form-control" name="crop_recommend[pottasium]" id="pottasium"
-                            placeholder="Enter value of pottasium" step="1" min="0" max="100" required>
+                            placeholder="Enter value of pottasium (0-100)" step="1" min="0" max="100" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
@@ -41,7 +41,7 @@
                     <div class="mb-3">
                         <label for="ph" class="form-label">pH Level<span class="mandatory">*</span> : </label>
                         <input type="number" class="form-control" name="crop_recommend[ph]" id="ph"
-                            placeholder="Enter value of pH" step="1" min="0" max="14" required>
+                            placeholder="Enter value of pH (0-14)" step="1" min="0" max="14" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
@@ -52,7 +52,7 @@
                     <div class="mb-3">
                         <label for="rainfall" class="form-label">Rainfall (in mm)<span class="mandatory">*</span> : </label>
                         <input type="number" class="form-control" name="crop_recommend[rainfall]" id="rainfall"
-                            placeholder="Enter value of rainfall" step="1" min="0" max="50" required>
+                            placeholder="Enter value of rainfall (0-50)" step="1" min="0" max="50" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
