@@ -1,7 +1,7 @@
 <% layout('/layouts/Boiler Plate') %>
     <div class="row d-flex justify-content-center p-2" style="flex: 1;">
         <div class="card bg-light p-3 border border-success rounded-3 width-forty">
-            <h2 class="text-center mb-3">Find the most suitable fertilizer for your crop</h2>
+            <h3 class="text-center mb-3">Find the most suitable fertilizer for your crop</h3>
             <div class="col-lg-10 offset-lg-1">
                 <p class="mb-3 mt-2 mandatory">* Mandatory Fields</p>
                 <form action="/crops/fertilizer-recommendation" method="post" class="d-inline needs-validation"
@@ -9,7 +9,7 @@
                     <div class="mb-3">
                         <label for="nitrogen" class="form-label">Nitrogen (N)<span class="mandatory">*</span> : </label>
                         <input type="number" class="form-control" name="fertilizer_recommend[nitrogen]" id="nitrogen"
-                            placeholder="Enter value of nitrogen" step="1" min="0" max="100" required>
+                            placeholder="Enter value of nitrogen (0-100)" step="1" min="0" max="100" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
@@ -20,7 +20,7 @@
                     <div class="mb-3">
                         <label for="phosphorous" class="form-label">Phosphorous (P)<span class="mandatory">*</span> :</label>
                         <input type="number" class="form-control" name="fertilizer_recommend[phosphorous]" id="phosphorous"
-                            placeholder="Enter value of phosphorous" step="1" min="0" max="100" required>
+                            placeholder="Enter value of phosphorous (0-100)" step="1" min="0" max="100" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
@@ -31,7 +31,7 @@
                     <div class="mb-3">
                         <label for="pottasium" class="form-label">Pottasium (K)<span class="mandatory">*</span> :</label>
                         <input type="number" class="form-control" name="fertilizer_recommend[pottasium]" id="pottasium"
-                            placeholder="Enter value of pottasium" step="1" min="0" max="100" required>
+                            placeholder="Enter value of pottasium (0-100)" step="1" min="0" max="100" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>

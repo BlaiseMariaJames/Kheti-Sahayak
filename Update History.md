@@ -3,7 +3,14 @@
     <summary><h1 style="display: inline-block;">Update History</h1></summary>
   </ul>
 </div>
+   
+<h3>Feature 4: Disease Prediction FRONT END Completion with bugs fixed - October 29th 2023</h3>
 
+_Committed on October 29, 2023_
+
+1. Update Plant Disease Detection view.
+2. Add Update Image.js file.
+   
 <h3>Feature 3: Fertilizer Recommendation FRONT END Completion with bugs fixed - October 23rd 2023</h3>
 
 _Committed on October 23, 2023_
