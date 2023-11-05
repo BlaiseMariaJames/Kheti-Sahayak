@@ -3,6 +3,13 @@
     <summary><h1 style="display: inline-block;">Update History</h1></summary>
   </ul>
 </div>
+
+<h3>JAVASCRIPT (NODE) BACK END Completion FOR RECOMMENDATION AND DETECTION FEATURES with bugs fixed - November 5th 2023</h3>
+
+_Committed on November 5, 2023_
+
+1. Add JOI models for validation for crop and fertilizer recommendation.
+2. Update Crop controller and routes to recieve data at the Javascript (NODE) Backend.
    
 <h3>Feature 4: Disease Prediction FRONT END Completion with bugs fixed - October 29th 2023</h3>
 

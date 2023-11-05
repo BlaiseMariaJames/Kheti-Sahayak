@@ -9,6 +9,6 @@ imageUpload.addEventListener("change", (event) => {
         };
         reader.readAsDataURL(selectedFile);
     } else {
-        image.src = "https://res.cloudinary.com/dtwgxcqkr/image/upload/v1675496482/YelpCamp%20Related%20Media/No_Image_Available_onn3wa.webp";
+        image.src = "https://res.cloudinary.com/dtwgxcqkr/image/upload/v1706147664/Kheti%20Sahayak%20Related%20Media/No_Image_Available.webp";
     }
 });
