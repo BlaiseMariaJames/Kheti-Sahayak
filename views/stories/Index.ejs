@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kheti Sahayak | Stories</title>
     <link rel="icon" type="image/x-icon" href="/Media/Kheti Sahayak Icon.ico">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
         label,
         .label {
@@ -111,7 +111,7 @@
                                                 <% } %>
                                         </div>
                                         <% } else {%>
-                                            <img src="https://res.cloudinary.com/dtwgxcqkr/image/upload/v1675496482/YelpCamp%20Related%20Media/No_Image_Available_onn3wa.webp"
+                                            <img src="https://res.cloudinary.com/dtwgxcqkr/image/upload/v1706147664/Kheti%20Sahayak%20Related%20Media/No_Image_Available.webp"
                                                 alt="No Image Available" class="img-fluid" height="450px" crossorigin>
                                             <% } %>
                                 </div>
@@ -161,8 +161,7 @@
                                                             <p class="comment">
                                                                 <%= comment.body %>
                                                             </p>
-                                                            <% if(currentUser && currentUser.equals(comment.author)) {
-                                                                %>
+                                                            <% if(currentUser && currentUser.equals(comment.author)) { %>
                                                                 <form
                                                                     action="/stories/<%=story._id%>/comments/<%=comment._id%>?_method=DELETE"
                                                                     method="post">
@@ -189,20 +188,11 @@
                                 <% } %>
         </main>
         <%- include('../partials/Footer') %>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-                crossorigin="anonymous">
-                </script>
-            <script>
-                let extendTexts = document.querySelectorAll(".extend");
-                let readMoreBtns = document.querySelectorAll(".read-more");
-                readMoreBtns.forEach((readMore, index) => {
-                    readMore.addEventListener("click", function () {
-                        this.style.display = 'none';
-                        extendTexts[index].classList.toggle("hide");
-                    });
-                });
-            </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+        <script src="/Javascript/Bootstrap Form Validations.js"></script>
+        <script src="/Javascript/Extend Text.js"></script>
 </body>
 
 </html>

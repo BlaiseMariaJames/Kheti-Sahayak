@@ -8,20 +8,16 @@ const { CLOUDINARY_CLOUD_NAME } = process.env;
 
 // ACCEPTED SCRIPT SOURCE URLS (USED FOR THIS PROJECT)
 const scriptSrcUrls = [
-    "https://api.mapbox.com",
     "https://cdn.jsdelivr.net",
     "https://kit.fontawesome.com",
     "https://cdnjs.cloudflare.com",
-    "https://api.tiles.mapbox.com",
     "https://stackpath.bootstrapcdn.com"
 ];
 
 // ACCEPTED STYLE SOURCE URLS (USED FOR THIS PROJECT)
 const styleSrcUrls = [
-    "https://api.mapbox.com",
     "https://cdn.jsdelivr.net",
     "https://use.fontawesome.com",
-    "https://api.tiles.mapbox.com",
     "https://fonts.googleapis.com",
     "https://kit-free.fontawesome.com",
     "https://stackpath.bootstrapcdn.com",
@@ -29,16 +25,12 @@ const styleSrcUrls = [
 ];
 
 // ACCEPTED CONNECT SOURCE URLS (USED FOR THIS PROJECT)
-const connectSrcUrls = [
-    "https://api.mapbox.com",
-    "https://events.mapbox.com",
-    "https://*.tiles.mapbox.com"
-];
+const connectSrcUrls = [];
 
 // ACCEPTED FONT SOURCE URLS (USED FOR THIS PROJECT)
 const fontSrcUrls = [
-    "https://fonts.gstatic.com", // Google Fonts
-    "https://unpkg.com/boxicons@2.1.4/fonts/", // Boxicons
+    "https://fonts.gstatic.com",
+    "https://unpkg.com/boxicons@2.1.4/fonts/",
 ];
 
 // CONFIGURING CONTENT SECURITY POLICY OF HELMET
