@@ -4,7 +4,16 @@
   </ul>
 </div>
 
-<h3> JAVASCRIPT (NODE) BACK END Completion FOR RECOMMENDATION AND DETECTION FEATURES with bugs fixed - November 5th 2023</h3>
+<h3>PYTHON BACK END Completion FOR RECOMMENDATION AND DETECTION FEATURES with bugs fixed - November 14th 2023</h3>
+
+_Committed on November 14, 2023_
+
+1. Add Kheti Shayak.py file for crop, fertilizer recomendation and plant disease detection.
+2. Train and develop model using Random Forest for crop recommendation.
+3. Add fertilizer.csv for fertilizer recommendation using Custom Algorithm.
+4. Train and develop model using Resnet 9 for plant disease prediction.
+   
+<h3>JAVASCRIPT (NODE) BACK END Completion FOR RECOMMENDATION AND DETECTION FEATURES with bugs fixed - November 5th 2023</h3>
 
 _Committed on November 5, 2023_
 
