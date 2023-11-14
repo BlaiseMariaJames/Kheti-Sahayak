@@ -1,15 +1,15 @@
 // REQUIRING STORY MODEL AND OBJECT ID
-const Story = require("../../models/Mongoose Models/Story Model.js");
+const Story = require("../../models/mongoose/Story Model.js");
 const ObjectID = require("mongoose").Types.ObjectId;
 
 // REQUIRING APPLICATION ERROR HANDLER CLASS 
-const ApplicationError = require("../Error Handling/Application Error Handler Class.js");
+const ApplicationError = require("../error handling/Application Error Handler Class.js");
 
 // REQUIRING WRAPPER FUNCTION TO HANDLE ASYNC ERRORS
-const handleAsyncErrors = require("../Error Handling/Async Error Handling Middleware Function.js");
+const handleAsyncErrors = require("../error handling/Async Error Handling Middleware Function.js");
 
 // REQUIRING FUNCTION TO DELETE STORY IMAGES FROM CLOUDINARY (IF IN CASE OF ANY ERROR WHILE UPLOADING)
-const deletestoryImages = require("../Cloudinary/Delete Cloudinary Images.js");
+const deletestoryImages = require("../cloudinary/Delete Cloudinary Images.js");
 
 // DEFINING MIDDLEWARE FUNCTION TO CHECK IF STORY ID IS VALID, STORY EXISTS AND CURRENT USER IS AUTHORIZED TO EDIT OR DELETE THAT STORY
 const isAuthorized = handleAsyncErrors(async (request, response, next) => {

@@ -3,7 +3,7 @@ const path = require('path');
 const fileSystem = require("fs").promises;
 
 // REQUIRING CROP SCHEMAS
-const cropSchemas = require("../models/Joi Models/Crop Models.js");
+const cropSchemas = require("../models/joi/Crop Models.js");
 
 // Crop Recommendation Form --> Form to recommend crops.
 module.exports.renderCropRecommendationForm = (request, response, next) => {

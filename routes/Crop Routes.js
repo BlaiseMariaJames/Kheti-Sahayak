@@ -27,10 +27,10 @@ const router = express.Router();
 const Crop = require("../controllers/Crop Controller");
 
 // REQUIRING WRAPPER FUNCTION TO HANDLE ASYNC ERRORS
-const handleAsyncErrors = require("../utilities/Error Handling/Async Error Handling Middleware Function.js");
+const handleAsyncErrors = require("../utilities/error handling/Async Error Handling Middleware Function.js");
 
 // REQUIRING MIDDLEWARE FUNCTION TO CHECK IF USER IS LOGGED IN 
-const isLoggedIn = require("../utilities/Authentication/Check If Logged In.js");
+const isLoggedIn = require("../utilities/authentication/Check If Logged In.js");
 
 // RESPONDING TO THE SERVER AT CROP MODEL BASED ROUTE
 

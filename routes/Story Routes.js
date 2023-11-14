@@ -1,6 +1,6 @@
 // REQUIRING EXPRESS AND CLOUDINARY STORAGE
 const express = require("express");
-const { storage } = require("../utilities/Cloudinary/Cloudinary Configuration.js");
+const { storage } = require("../utilities/cloudinary/Cloudinary Configuration.js");
 
 // MULTER CONFIGURATION
 const multer = require("multer");
@@ -13,13 +13,13 @@ const router = express.Router();
 const Story = require("../controllers/Story Controller.js");
 
 // REQUIRING WRAPPER FUNCTION TO HANDLE ASYNC ERRORS
-const handleAsyncErrors = require("../utilities/Error Handling/Async Error Handling Middleware Function.js");
+const handleAsyncErrors = require("../utilities/error handling/Async Error Handling Middleware Function.js");
 
 // REQUIRING MIDDLEWARE FUNCTION TO CHECK IF USER IS LOGGED IN 
-const isLoggedIn = require("../utilities/Authentication/Check If Logged In.js");
+const isLoggedIn = require("../utilities/authentication/Check If Logged In.js");
 
 // REQUIRING MIDDLEWARE FUNCTION TO CHECK IF STORY ID IS VALID, STORY EXISTS AND CURRENT USER IS AUTHORIZED
-const isAuthorized = require("../utilities/Authorization/Check If Is Authorized For Story.js");
+const isAuthorized = require("../utilities/authorization/Check If Is Authorized For Story.js");
 
 // RESPONDING TO THE SERVER AT STORY MODEL BASED ROUTE
 

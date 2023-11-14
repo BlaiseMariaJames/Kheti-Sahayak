@@ -1,16 +1,16 @@
 // REQUIRING OBJECT ID AND CLOUDINARY 
 const ObjectID = require("mongoose").Types.ObjectId;
-const { cloudinary } = require("../utilities/Cloudinary/Cloudinary Configuration.js");
+const { cloudinary } = require("../utilities/cloudinary/Cloudinary Configuration.js");
 
 // REQUIRING STORY MODEL AND SCHEMA
-const Story = require("../models/Mongoose Models/Story Model.js");
-const storySchema = require("../models/Joi Models/Story Model.js");
+const Story = require("../models/mongoose/Story Model.js");
+const storySchema = require("../models/joi/Story Model.js");
 
 // REQUIRING APPLICATION ERROR HANDLER CLASS 
-const ApplicationError = require("../utilities/Error Handling/Application Error Handler Class.js");
+const ApplicationError = require("../utilities/error handling/Application Error Handler Class.js");
 
 // REQUIRING FUNCTION TO DELETE STORY IMAGES FROM CLOUDINARY (IF IN CASE OF ANY ERROR WHILE UPLOADING)
-const deletestoryImages = require("../utilities/Cloudinary/Delete Cloudinary Images.js");
+const deletestoryImages = require("../utilities/cloudinary/Delete Cloudinary Images.js");
 
 // CREATE OPERATION ROUTES
 

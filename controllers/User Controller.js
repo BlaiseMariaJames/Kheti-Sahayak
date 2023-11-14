@@ -1,9 +1,9 @@
 // REQUIRING USER MODEL AND SCHEMA
-const User = require("../models/Mongoose Models/User Model.js");
-const UserSchema = require("../models/Joi Models/User Model.js");
+const User = require("../models/mongoose/User Model.js");
+const UserSchema = require("../models/joi/User Model.js");
 
 // REQUIRING APPLICATION ERROR HANDLER CLASS 
-const ApplicationError = require("../utilities/Error Handling/Application Error Handler Class.js");
+const ApplicationError = require("../utilities/error handling/Application Error Handler Class.js");
 
 // Login-Register --> Form to login / register a user.
 module.exports.renderForm = (request, response) => {

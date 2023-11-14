@@ -1,7 +1,7 @@
 // REQUIRING MONGOOSE, READLINE AND CLOUDINARY
 const mongoose = require("mongoose");
 const readline = require("readline-sync");
-const { cloudinary } = require("../utilities/Cloudinary/Cloudinary Configuration.js");
+const { cloudinary } = require("../utilities/cloudinary/Cloudinary Configuration.js");
 
 // ACCESS .ENV VARIABLES IF NOT IN "PRODUCTION MODE" BY REQUIRING DOTENV
 if (process.env.NODE_ENV !== "production") {
@@ -16,9 +16,9 @@ cloudinary.config({
 });
 
 // REQUIRING USER, COMMENT AND STORY MODEL
-const User = require("../models/Mongoose Models/User Model.js");
-const Comment = require("../models/Mongoose Models/Comment Model.js");
-const Story = require("../models/Mongoose Models/Story Model.js");
+const User = require("../models/mongoose/User Model.js");
+const Comment = require("../models/mongoose/Comment Model.js");
+const Story = require("../models/mongoose/Story Model.js");
 
 // REQUIRING DATA
 const stories = require("./Stories.js");
@@ -31,7 +31,7 @@ const findRandom = array => array[Math.floor(Math.random() * array.length)];
 const uploadSamplestoryImages = async () => {
     let images = [];
     for (let i = 1; i <= 5; i++) {
-        await cloudinary.uploader.upload(`public/Media/Sample Images/sample_image_${i}.jpg`, {
+        await cloudinary.uploader.upload(`public/media/sample images/sample_image_${i}.jpg`, {
             folder: "/Kheti Sahayak",
             resource_type: "image"
         }).then((result) => {

@@ -41,7 +41,7 @@ application.use(express.static('public'));
 application.set('public', path.join(__dirname, '/public'));
 
 // REQUIRING APPLICATION ERROR HANDLER CLASS 
-const ApplicationError = require("./utilities/Error Handling/Application Error Handler Class");
+const ApplicationError = require("./utilities/error handling/Application Error Handler Class");
 
 
 // STAGE 2: CONFIGURATION OF MIDDLEWARES //
@@ -100,7 +100,7 @@ application.use(cors());
 application.use(flash());
 
 // CONFIGURING HELMET
-const helmet = require("./utilities/Security/Helmet Configuration");
+const helmet = require("./utilities/security/Helmet Configuration");
 application.use(helmet);
 
 // CONFIGURING EXPRESS MONGOOSE SANITIZE
@@ -111,7 +111,7 @@ application.use(passport.initialize());
 application.use(passport.session());
 
 // REQUIRING USER MODEL
-const User = require("./models/Mongoose Models/User Model.js");
+const User = require("./models/mongoose/User Model.js");
 
 // CONFIGURING PASSPORT TO USE LOCAL STRATEGY ON USER MODEL
 passport.use(new passportLocalStrategy(User.authenticate()));

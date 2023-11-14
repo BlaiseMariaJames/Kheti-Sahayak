@@ -35,8 +35,7 @@ const images = [
     "https://res.cloudinary.com/dtwgxcqkr/image/upload/v1692887737/Kheti%20Sahayak%20Related%20Media/image_1.jpg",
     "https://res.cloudinary.com/dtwgxcqkr/image/upload/v1692887743/Kheti%20Sahayak%20Related%20Media/image_2.jpg",
     "https://res.cloudinary.com/dtwgxcqkr/image/upload/v1692887750/Kheti%20Sahayak%20Related%20Media/image_3.jpg",
-    "https://res.cloudinary.com/dtwgxcqkr/image/upload/v1692887756/Kheti%20Sahayak%20Related%20Media/image_4.jpg",
-    "https://res.cloudinary.com/dtwgxcqkr/image/upload/v1692887763/Kheti%20Sahayak%20Related%20Media/image_5.jpg"
+    "https://res.cloudinary.com/dtwgxcqkr/image/upload/v1692887756/Kheti%20Sahayak%20Related%20Media/image_4.jpg"
 ];
 
 // Function to automate image slider

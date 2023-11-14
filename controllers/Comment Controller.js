@@ -1,12 +1,12 @@
 // REQUIRING STORY MODEL
-const Story = require("../models/Mongoose Models/Story Model.js");
+const Story = require("../models/mongoose/Story Model.js");
 
 // REQUIRING COMMENT MODEL AND SCHEMA
-const Comment = require("../models/Mongoose Models/Comment Model.js");
-const CommentSchema = require("../models/Joi Models/Comment Model.js");
+const Comment = require("../models/mongoose/Comment Model.js");
+const CommentSchema = require("../models/joi/Comment Model.js");
 
 // REQUIRING APPLICATION ERROR HANDLER CLASS 
-const ApplicationError = require("../utilities/Error Handling/Application Error Handler Class.js");
+const ApplicationError = require("../utilities/error handling/Application Error Handler Class.js");
 
 // Create --> Creates new comment on server.
 module.exports.createComment = async (request, response, next) => {
@@ -29,7 +29,7 @@ module.exports.createComment = async (request, response, next) => {
         story.comments.push(newComment);
         await story.save();
         request.flash('success', 'Successfully created a new Comment!');
-        response.redirect(`/stories#${storyId}`);
+        response.redirect(`/stories#${newComment._id}`);
     }
 }
 
