@@ -1,5 +1,7 @@
 # Standard library imports
-from sys import argv
+import sys
+import json
+import ast # abstact syntax tree
 import pickle
 
 # External library imports
@@ -92,29 +94,29 @@ def weather_fetch(api_key, city_name):
     return None
 
 # CLI function for crop recommendation
-def crop_recommendation_cli(api_key, model):
-    print("Welcome to Harvestify - Crop Recommendation CLI")
+def crop_recommendation_cli(response, model):
+    api_key = response['api_key']
     try:
-        N = int(input(f"Enter the {NITROGEN} level: "))
-        P = int(input(f"Enter the {PHOSPHOROUS} level: "))
-        K = int(input(f"Enter the {POTASSIUM} level: "))
-        ph = float(input("Enter the pH level: "))
-        rainfall = float(input("Enter the rainfall level: "))
-        city = input("Enter the city name for weather data: ")
-        if weather_fetch(api_key, city) is not None:
-            temperature, humidity = weather_fetch(api_key, city)
+        N = int(response['nitrogen'])
+        P = int(response['phosphorous'])
+        K = int(response['pottasium'])
+        ph = float(response['ph'])
+        rainfall = float(response['rainfall'])
+        district = response['district']
+        if weather_fetch(api_key, district) is not None:
+            temperature, humidity = weather_fetch(api_key, district)
             data = np.array([[N, P, K, temperature, humidity, ph, rainfall]])
             crop_prediction = model.predict(data)
             recommended_crop = crop_prediction[0]
-            print(f"Recommended crop: {recommended_crop}")
+            response['result'] = f"Recommended crop: {recommended_crop}"
         else:
-            print("Error fetching weather data. Please try again.")
+            response['error'] =  "Error fetching weather data. Please try again."
     except ValueError as e:
-        print(f"Invalid input. Please enter a valid number: {e}")
+        response['error'] =  f"Invalid input. Please enter a valid number: {e}"
+    return response
 
 # CLI function for fertilizer recommendation
-def fert_recommendation_cli():
-    print("Welcome to Harvestify - Fertilizer Recommendation CLI")
+def fert_recommendation_cli(response):
     try:
         verdict = {
             'NHigh': """<h5 class="text-center mb-3">The <b>nitrogen (N)</b> value of your soil is <b>high</b>.</h5>""",
@@ -124,10 +126,10 @@ def fert_recommendation_cli():
             'KHigh': """<h5 class="text-center mb-3">The <b>potassium (K)</b> value of your soil is <b>high</b>.</h5>""",
             'Klow': """<h5 class="text-center mb-3">The <b>potassium (K)</b> value of your soil is <b>low</b>.</h5>"""
         }
-        crop_name = input("Enter the crop name: ")
-        N = int(input(f"Enter the {NITROGEN} level: "))
-        P = int(input(f"Enter the {PHOSPHOROUS} level: "))
-        K = int(input(f"Enter the {POTASSIUM} level: "))
+        crop_name = response['crop']
+        N = int(response['nitrogen'])
+        P = int(response['phosphorous'])
+        K = int(response['pottasium'])
         df = pd.read_csv("backend/data/fertilizer_recommendation.csv")
         nr = df[df["Crop"] == crop_name][NITROGEN].iloc[0]
         pr = df[df["Crop"] == crop_name][PHOSPHOROUS].iloc[0]
@@ -143,14 +145,15 @@ def fert_recommendation_cli():
             key = "PHigh" if p < 0 else "Plow"
         else:
             key = "KHigh" if k < 0 else "Klow"
-        print(verdict[key])
-        print(fertilizer_dic[key])
+        response['verdict'] = f"{verdict[key]}"
+        response['result'] = f"{fertilizer_dic[key]}"
     except ValueError as e:
-        print(f"Invalid input. Please enter a valid number: {e}")
+        response['error'] =  f"Invalid input. Please enter a valid number: {e}"
+    return response
 
 # CLI function for disease prediction
-def disease_prediction_cli(model, img_path):
-    print("Welcome to Harvestify - Disease Prediction CLI")
+def disease_prediction_cli(response, model):
+    img_path = response['path']
     try:
         transform = transforms.Compose(
             [
@@ -166,23 +169,34 @@ def disease_prediction_cli(model, img_path):
             predictions = model(img_tensor)
         _, predicted_class = torch.max(predictions, dim=1)
         predicted_disease = disease_classes[predicted_class[0].item()]
-        print(disease_dic[predicted_disease])
+        response['result'] = disease_dic[predicted_disease]
     except Exception as e:
-        print(f"Error predicting disease. Please try retaking the image.")
+        response['error'] =  "Error predicting disease. Please try retaking the image."
+    return response
 
 # Main menu function to choose the appropriate CLI function based on the option
-def main_menu(api_key, img_path, option):
+def main_menu(response):
+    option = response['option']
     if option == 1:
         model = load_crop_recommendation_model("backend/models/crop recommendation/random_forest.pkl")
-        return crop_recommendation_cli(api_key, model)
+        return crop_recommendation_cli(response, model)
     elif option == 2:
-        fert_recommendation_cli()
+        return fert_recommendation_cli(response)
     else:
         model = load_disease_model( "backend/models/plant disease detection/resnet9_classifier.pth", len(disease_classes))
-        return disease_prediction_cli(model, img_path)
+        return disease_prediction_cli(response, model)
 
 if __name__ == "__main__":
-    api_key = argv[1]
-    img_path = argv[2]
-    option = int(argv[3])
-    main_menu(api_key, img_path, option)
+    request = sys.argv[1]
+    response = ast.literal_eval(request)
+    response = main_menu(response)
+    try :
+        option = response['option']
+        del response['option']
+        if option == 1:
+            del response['api_key']
+        elif option == 3:
+            del response['path']
+    finally:
+        print(json.dumps(response))
+        sys.stdout.flush()

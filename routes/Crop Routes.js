@@ -36,11 +36,11 @@ const isLoggedIn = require("../utilities/authentication/Check If Logged In.js");
 
 router.route('/crop-recommendation')
     .get(isLoggedIn, Crop.renderCropRecommendationForm)
-    .post(isLoggedIn, Crop.recommendCrop);
+    .post(isLoggedIn, handleAsyncErrors(Crop.recommendCrop));
 
 router.route('/fertilizer-recommendation')
     .get(isLoggedIn, Crop.renderFertilizerRecommendationForm)
-    .post(isLoggedIn, Crop.recommendFertilizer);
+    .post(isLoggedIn, handleAsyncErrors(Crop.recommendFertilizer));
 
 router.route('/plant-disease-detection')
     .get(isLoggedIn, Crop.renderPlantDiseaseDetectionForm)

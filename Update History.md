@@ -4,6 +4,13 @@
   </ul>
 </div>
 
+<h3>CONNECTION Completion between JAVASCRIPT (NODE) BACK END and PYTHON BACK END with bugs fixed - November 23rd 2023</h3>
+
+_Committed on November 23, 2023_
+
+1. Add a connector file to connect node to python backend to get recommendations and detections.
+2. Modify Crop Controller.js and Kheti Sahayak.py files to send and recieve data. 
+   
 <h3>PYTHON BACK END Completion FOR RECOMMENDATION AND DETECTION FEATURES with bugs fixed - November 14th 2023</h3>
 
 _Committed on November 14, 2023_
