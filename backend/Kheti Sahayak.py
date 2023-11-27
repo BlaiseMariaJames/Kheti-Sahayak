@@ -102,17 +102,23 @@ def crop_recommendation_cli(response, model):
         K = int(response['pottasium'])
         ph = float(response['ph'])
         rainfall = float(response['rainfall'])
-        district = response['district']
-        if weather_fetch(api_key, district) is not None:
-            temperature, humidity = weather_fetch(api_key, district)
+        city = response['city'].lower()
+        state = response['state'].lower()
+        cityFound = weather_fetch(api_key, city) is not None
+        stateFound = weather_fetch(api_key, state) is not None
+        if (cityFound) or (stateFound):
+            if cityFound:
+                temperature, humidity = weather_fetch(api_key, city)
+            elif stateFound:
+                temperature, humidity = weather_fetch(api_key, state)
             data = np.array([[N, P, K, temperature, humidity, ph, rainfall]])
             crop_prediction = model.predict(data)
             recommended_crop = crop_prediction[0]
-            response['result'] = f"Recommended crop: {recommended_crop}"
+            response['result'] = f"{recommended_crop}"
         else:
-            response['error'] =  "Error fetching weather data. Please try again."
+            response['error'] = "Error fetching weather data. Please try again."
     except ValueError as e:
-        response['error'] =  f"Invalid input. Please enter a valid number: {e}"
+        response['error'] = f"Invalid input. Please enter a valid number: {e}"
     return response
 
 # CLI function for fertilizer recommendation
@@ -148,7 +154,7 @@ def fert_recommendation_cli(response):
         response['verdict'] = f"{verdict[key]}"
         response['result'] = f"{fertilizer_dic[key]}"
     except ValueError as e:
-        response['error'] =  f"Invalid input. Please enter a valid number: {e}"
+        response['error'] = f"Invalid input. Please enter a valid number: {e}"
     return response
 
 # CLI function for disease prediction
@@ -169,9 +175,9 @@ def disease_prediction_cli(response, model):
             predictions = model(img_tensor)
         _, predicted_class = torch.max(predictions, dim=1)
         predicted_disease = disease_classes[predicted_class[0].item()]
-        response['result'] = disease_dic[predicted_disease]
+        response['result'] = f"{disease_dic[predicted_disease]}"
     except Exception as e:
-        response['error'] =  "Error predicting disease. Please try retaking the image."
+        response['error'] = "Error predicting disease. Please try retaking the image."
     return response
 
 # Main menu function to choose the appropriate CLI function based on the option

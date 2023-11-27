@@ -20,17 +20,25 @@ module.exports.renderCropRecommendationForm = (request, response, next) => {
 // Crop Recommendation --> Recommend crops.
 module.exports.recommendCrop = async (request, response, next) => {
     const { cropRecommendationSchema } = cropSchemas;
-    const { crop_recommend } = request.body;
+    let { crop_recommend } = request.body;
     const { error } = cropRecommendationSchema.validate(crop_recommend);
     if (error) {
         let errorMessage = error.details.map(error => error.message).join(',');
         request.flash('error', `Cannot recommend crop, ${errorMessage}.`);
         response.status(400).redirect('/crops/crop-recommendation');
     } else {
+        let { district } = crop_recommend;
+        crop_recommend.city = district.split(" ")[0];
         crop_recommend.api_key = OPEN_WEATHER_API_KEY;
         try {
             const recommendation = await connect(crop_recommend, 1);
-            response.send(`Crop Recommended for ${JSON.stringify(recommendation)}`);
+            const { result } = recommendation;
+            if (result) {
+                const imageUrl = `https://res.cloudinary.com/dtwgxcqkr/image/upload/v1706242805/Kheti%20Sahayak%20Related%20Media/crops/${recommendation.result}`;
+                return response.render('crops/Recommend Crop', { title: "Kheti Sahayak | Crop Recommendation", recommendation, imageUrl });
+            }
+            request.flash('error', `Sorry, we couldn't recommend crop for your location!`);
+            response.status(400).redirect('/crops/crop-recommendation');
         } catch (error) {
             return next(new ApplicationError(error, "Python Server Error"));
         }

@@ -4,6 +4,12 @@
   </ul>
 </div>
 
+<h3>Feature 2: Crop Recommendation Completion with bugs fixed - November 27th 2023</h3>
+
+_Committed on November 27, 2023_
+
+1. Tested for bugs, fixed them, and finalized Feature 2: Crop Recommendation.
+
 <h3>CONNECTION Completion between JAVASCRIPT (NODE) BACK END and PYTHON BACK END with bugs fixed - November 23rd 2023</h3>
 
 _Committed on November 23, 2023_
