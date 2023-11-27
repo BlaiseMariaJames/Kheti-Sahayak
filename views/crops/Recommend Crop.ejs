@@ -1,0 +1,48 @@
+<% layout('/layouts/Boiler Plate') %>
+    <div class="row d-flex justify-content-center p-2" style="flex: 1;">
+        <div class="card bg-light p-3 border border-success rounded-3 width-forty">
+            <h3 class="text-center mb-3">The most suitable crop for your soil is</h3>
+            <div class="col-lg-10 offset-lg-1">
+                <form class="d-inline">
+                    <div class="my-3 d-flex flex-column align-items-center justify-content-center gap-4">
+                        <img src="<%=imageUrl%>" class="img-fluid" alt="Crop Image" width="50%" height="60%">
+                        <h5 class="form-label">Recommended crop: <i><%= recommendation.result %></i></h5>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nitrogen" class="form-label">Nitrogen (N): </label>
+                        <input type="number" class="form-control" value="<%= recommendation.nitrogen %>" id="nitrogen"
+                            disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phosphorous" class="form-label">Phosphorous (P): </label>
+                        <input type="number" class="form-control" value="<%= recommendation.phosphorous %>"
+                            id="phosphorous" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pottasium" class="form-label">Pottasium (K): </label>
+                        <input type="number" class="form-control" value="<%= recommendation.pottasium %>" id="pottasium"
+                            disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ph" class="form-label">pH Level: </label>
+                        <input type="number" class="form-control" value="<%= recommendation.ph %>" id="ph" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rainfall" class="form-label">Rainfall (in mm): </label>
+                        <input type="number" class="form-control" value="<%= recommendation.rainfall %>" id="rainfall"
+                            disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="state" class="form-label">State: </label>
+                        <input type="text" class="form-control" value="<%= recommendation.state %>" id="state" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="district" class="form-label">District: </label>
+                        <input type="text" class="form-control" value="<%= recommendation.district %>" id="district"
+                            disabled>
+                    </div>
+                </form>
+                <a href="/crops/crop-recommendation" class="btn btn-secondary btn-sm">Go Back</a>
+            </div>
+        </div>
+    </div>

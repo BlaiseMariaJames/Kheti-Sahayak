@@ -103,14 +103,19 @@ def crop_recommendation_cli(response, model):
         K = int(response['pottasium'])
         ph = float(response['ph'])
         rainfall = float(response['rainfall'])
-        district = response['district']
-
-        if weather_fetch(api_key, district) is not None:
-            temperature, humidity = weather_fetch(api_key, district)
+        city = response['city'].lower()
+        state = response['state'].lower()
+        cityFound = weather_fetch(api_key, city) is not None
+        stateFound = weather_fetch(api_key, state) is not None
+        if (cityFound) or (stateFound):
+            if cityFound:
+                temperature, humidity = weather_fetch(api_key, city)
+            elif stateFound:
+                temperature, humidity = weather_fetch(api_key, state)
             data = np.array([[N, P, K, temperature, humidity, ph, rainfall]])
             crop_prediction = model.predict(data)
             recommended_crop = crop_prediction[0]
-            response['result'] = f"Recommended crop: {recommended_crop}"
+            response['result'] = f"{recommended_crop}"
         else:
             response['error'] =  "Error fetching weather data. Please try again."
 

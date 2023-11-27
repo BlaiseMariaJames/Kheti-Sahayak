@@ -8,20 +8,20 @@ Joi = Joi.extend(escapeHTMLExtension);
 
 // DEFINING CROP RECOMMENDATION SCHEMA
 const cropRecommendationSchema = Joi.object({
-    nitrogen: Joi.number().min(0).max(100).required(),
-    phosphorous: Joi.number().min(0).max(100).required(),
-    pottasium: Joi.number().min(0).max(100).required(),
+    nitrogen: Joi.number().min(0).max(200).required(),
+    phosphorous: Joi.number().min(0).max(200).required(),
+    pottasium: Joi.number().min(0).max(200).required(),
     ph: Joi.number().min(0).max(14).required(),
-    rainfall: Joi.number().min(0).max(50).required(),
+    rainfall: Joi.number().min(0).max(300).required(),
     state: Joi.string().required().escapeHTML(),
     district: Joi.string().required().escapeHTML()
 });
 
 // DEFINING FERTILIZER RECOMMENDATION SCHEMA
 const fertilizerRecommendationSchema = Joi.object({
-    nitrogen: Joi.number().min(0).max(100).required(),
-    phosphorous: Joi.number().min(0).max(100).required(),
-    pottasium: Joi.number().min(0).max(100).required(),
+    nitrogen: Joi.number().min(0).max(200).required(),
+    phosphorous: Joi.number().min(0).max(200).required(),
+    pottasium: Joi.number().min(0).max(200).required(),
     crop: Joi.string().required().escapeHTML()
 });
 
