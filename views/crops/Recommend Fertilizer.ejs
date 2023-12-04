@@ -1,0 +1,31 @@
+<% layout('/layouts/Boiler Plate') %>
+    <div class="row d-flex justify-content-center p-2" style="flex: 1;">
+        <div class="card bg-light p-3 border border-success rounded-3 width-forty">
+            <h3 class="text-center mb-3">The most suitable fertilizer for your crop is</h3>
+            <div class="col-lg-10 offset-lg-1">
+                <form class="d-inline">
+                    <div class="my-3 text-justify p-3 border border-secondary rounded-3"> 
+                        <%- recommendation.verdict  %>
+                        <div class="my-3 d-flex flex-column align-items-center justify-content-center gap-4">
+                            <img src="<%=imageUrl%>" class="img-fluid" alt="Crop Image" width="80%">
+                            <h5 class="form-label">Selected crop: <i><%= recommendation.crop.charAt(0).toUpperCase() + recommendation.crop.slice(1).toLowerCase(); %></i></h5>
+                        </div>
+                        <%- recommendation.result  %>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nitrogen" class="form-label">Nitrogen (N): </label>
+                        <input type="number" class="form-control" value="<%= recommendation.nitrogen %>" id="nitrogen" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phosphorous" class="form-label">Phosphorous (P): </label>
+                        <input type="number" class="form-control" value="<%= recommendation.phosphorous %>" id="phosphorous" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pottasium" class="form-label">Pottasium (K): </label>
+                        <input type="number" class="form-control" value="<%= recommendation.pottasium %>" id="pottasium" disabled>
+                    </div>
+                </form>
+                <a href="/crops/fertilizer-recommendation" class="btn btn-secondary btn-sm">Go Back</a>
+            </div>
+        </div>
+    </div>
