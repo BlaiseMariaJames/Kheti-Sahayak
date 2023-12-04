@@ -62,7 +62,13 @@ module.exports.recommendFertilizer = async (request, response, next) => {
     } else {
         try {
             const recommendation = await connect(fertilizer_recommend, 2);
-            response.send(`Fertilizer Recommended for ${JSON.stringify(recommendation)}`);
+            const { result } = recommendation;
+            if (result) {
+                const imageUrl = `https://res.cloudinary.com/dtwgxcqkr/image/upload/v1706242805/Kheti%20Sahayak%20Related%20Media/crops/${recommendation.crop}`;
+                return response.render('crops/Recommend Fertilizer', { title: "Kheti Sahayak | Fertilizer Recommendation", recommendation, imageUrl });
+            }
+            request.flash('error', `Sorry, we couldn't recommend fertilizer for your crop!`);
+            response.status(400).redirect('/crops/fertilizer-recommendation');
         } catch (error) {
             return next(new ApplicationError(error, "Python Server Error"));
         }

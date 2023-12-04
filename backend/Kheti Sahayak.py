@@ -128,6 +128,15 @@ def crop_recommendation_cli(response, model):
 def fert_recommendation_cli(response):
 
     try:
+        verdict = {
+            'NHigh': """<h5 class="text-center mb-3">The <b>nitrogen (N)</b> value of your soil is <b>high</b>.</h5>""",
+            'Nlow': """<h5 class="text-center mb-3">The <b>nitrogen (N)</b> value of your soil is <b>low</b>.</h5>""",
+            'PHigh': """<h5 class="text-center mb-3">The <b>phosphorus (P)</b> value of your soil is <b>high</b>.</h5>""",
+            'Plow': """<h5 class="text-center mb-3">The <b>phosphorus (P)</b> value of your soil is <b>low</b>.</h5>""",
+            'KHigh': """<h5 class="text-center mb-3">The <b>potassium (K)</b> value of your soil is <b>high</b>.</h5>""",
+            'Klow': """<h5 class="text-center mb-3">The <b>potassium (K)</b> value of your soil is <b>low</b>.</h5>"""
+        }
+
         crop_name = response['crop']
         N = int(response['nitrogen'])
         P = int(response['phosphorous'])
@@ -150,7 +159,8 @@ def fert_recommendation_cli(response):
         else:
             key = 'KHigh' if k < 0 else 'Klow'
     
-        response['result'] = f"Recommended fertilizer: {fertilizer_dic[key]}"
+        response['verdict'] = f"{verdict[key]}"
+        response['result'] = f"{fertilizer_dic[key]}"
 
     except ValueError as e:
         response['error'] =  f"Invalid input. Please enter a valid number: {e}"

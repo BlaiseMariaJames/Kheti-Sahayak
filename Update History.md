@@ -4,6 +4,12 @@
   </ul>
 </div>
 
+<h3>Feature 3: Fertilizer Recommendation Completion with bugs fixed - December 4th 2023</h3>
+
+_Committed on December 4, 2023_
+
+1. Tested for bugs, fixed them, and finalized Feature 3: Fertilizer Recommendation.
+   
 <h3>Feature 2: Crop Recommendation Completion with bugs fixed - November 27th 2023</h3>
 
 _Committed on November 27, 2023_
