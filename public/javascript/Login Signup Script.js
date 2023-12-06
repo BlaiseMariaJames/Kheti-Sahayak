@@ -55,7 +55,7 @@ function autoslider() {
         bullets[index].classList.add("active");
         const textSlider = document.querySelector(".text-group");
         textSlider.style.transform = `translateY(${-(index) * 2.2}rem)`;
-        setTimeout(nextSlide, 2000);
+        setTimeout(nextSlide, 5000);
     }
 
     // Start the image slider

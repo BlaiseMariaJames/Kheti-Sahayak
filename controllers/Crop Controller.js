@@ -1,7 +1,3 @@
-// REQUIRING PATH AND FILE SYSTEM
-const path = require('path');
-const fileSystem = require("fs").promises;
-
 // REQUIRING CROP SCHEMAS
 const cropSchemas = require("../models/joi/Crop Models.js");
 
@@ -11,6 +7,9 @@ const connect = require("../utilities/others/Connect Javascript to Python.js");
 
 // REQUIRING APPLICATION ERROR HANDLER CLASS 
 const ApplicationError = require("../utilities/error handling/Application Error Handler Class.js");
+
+// REQUIRING FUNCTION TO DELETE THE TEMPORARY FOLDER AND ITS CONTENTS
+const deleteTemporaryFolder = require("../utilities/others/Delete Temporary Folder.js");
 
 // Crop Recommendation Form --> Form to recommend crops.
 module.exports.renderCropRecommendationForm = (request, response, next) => {
@@ -89,14 +88,14 @@ module.exports.detectDisease = async (request, response, next) => {
     } else {
         try {
             const detection = await connect(file, 3);
-            const { destination } = file;
-            const files = await fileSystem.readdir(destination);
-            await Promise.all(files.map(async (file) => {
-                const filePath = path.join(destination, file);
-                await fileSystem.unlink(filePath);
-            }));
-            await fileSystem.rmdir(destination);
-            response.send(`Disease Detected for ${JSON.stringify(detection)}`);
+            const { result } = detection;
+            if (!result) {
+                deleteTemporaryFolder(file);
+                request.flash('error', `Sorry, we couldn't detect disease of your crop! Please consider retaking the image.`);
+                return response.status(400).redirect('/crops/plant-disease-detection');
+            }
+            await response.render('crops/Detect Plant Disease', { title: "Kheti Sahayak | Plant Disease Detection", detection });
+            await deleteTemporaryFolder(file);
         } catch (error) {
             return next(new ApplicationError(error, "Python Server Error"));
         }
