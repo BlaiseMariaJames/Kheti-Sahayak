@@ -4,6 +4,12 @@
   </ul>
 </div>
 
+<h3>Feature 4: Disease Prediction Completion with bugs fixed - December 7th 2023</h3>
+
+_Committed on December 7, 2023_
+
+1. Tested for bugs, fixed them, and finalized Feature 4: Disease Prediction.
+   
 <h3>Feature 3: Fertilizer Recommendation Completion with bugs fixed - December 4th 2023</h3>
 
 _Committed on December 4, 2023_

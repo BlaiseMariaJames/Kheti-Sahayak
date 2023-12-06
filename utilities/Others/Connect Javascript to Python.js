@@ -1,7 +1,7 @@
-// Create a child process
+// CREATE A CHILD PROCESS
 const { spawn } = require("child_process");
 
-// Run backend python code on our JSON object
+// DEFINING FUNCTION TO RUN BACKEND PYTHON CODE ON OUR JSON OBJECT
 const connect = async (object, option) => {
     return new Promise((resolve, reject) => {
         object.option = option;
@@ -10,27 +10,27 @@ const connect = async (object, option) => {
             delete object.api_key;
         }
         delete object.option;
-        // Variable to store error message from Python
+        // VARIABLE TO STORE ERROR MESSAGE FROM PYTHON
         let errorMessage = '';
-        // Capture error output from Python
+        // CAPTURE ERROR OUTPUT FROM PYTHON
         pythonProcess.stderr.on('data', (data) => {
             errorMessage += data.toString();
         });
-        // Got a response from python on execution
+        // GOT A RESPONSE FROM PYTHON ON EXECUTION
         pythonProcess.stdout.on('data', (data) => {
             const response = JSON.parse(data.toString());
             return resolve(response);
         });
-        // Failed to recieve an response from python
+        // FAILED TO RECEIVE A RESPONSE FROM PYTHON
         pythonProcess.on('error', (error) => {
             return reject(error);
         });
         pythonProcess.on('exit', (code, signal) => {
             if (code === 0) {
-                // Executed but no response
+                // EXECUTED BUT NO RESPONSE
                 return resolve('Python process exited successfully');
             } else {
-                // Execution failed
+                // EXECUTION FAILED
                 return reject(errorMessage);
             }
         });

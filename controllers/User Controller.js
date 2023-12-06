@@ -53,11 +53,6 @@ module.exports.authenticateUser = (request, response) => {
     response.redirect(redirectUrl);
 }
 
-// Discuss --> Open discussion forum.
-module.exports.openDiscussionForum = (request, response, next) => {
-    response.render('users/Discussion Forum', { title: "Kheti Sahayak | Discuss" });
-}
-
 // Logout --> Logout a user.
 module.exports.logoutUser = (request, response, next) => {
     request.logout(function (error) {

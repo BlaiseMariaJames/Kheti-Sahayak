@@ -1,16 +1,15 @@
-// REQUIRING PATH AND FILE SYSTEM
-const path = require('path');
-const fileSystem = require("fs").promises;
-
 // REQUIRING CROP SCHEMAS
 const cropSchemas = require("../models/Joi Models/Crop Models.js");
 
 // REQUIRE API KEY AND JAVASCRIPT-PYTHON CONNECTOR FUNCTION
 const { OPEN_WEATHER_API_KEY } = process.env;
-const connect = require("../utilities/Connectors/Connect Javascript to Python.js");
+const connect = require("../utilities/Others/Connect Javascript to Python.js");
 
 // REQUIRING APPLICATION ERROR HANDLER CLASS 
 const ApplicationError = require("../utilities/Error Handling/Application Error Handler Class.js");
+
+// REQUIRING FUNCTION TO DELETE THE TEMPORARY FOLDER AND ITS CONTENTS
+const deleteTemporaryFolder = require("../utilities/Others/Delete Temporary Folder.js");
 
 // Crop Recommendation Form --> Form to recommend crops.
 module.exports.renderCropRecommendationForm = (request, response, next) => {
@@ -89,14 +88,14 @@ module.exports.detectDisease = async (request, response, next) => {
     } else {
         try {
             const detection = await connect(file, 3);
-            const { destination } = file;
-            const files = await fileSystem.readdir(destination);
-            await Promise.all(files.map(async (file) => {
-                const filePath = path.join(destination, file);
-                await fileSystem.unlink(filePath);
-            }));
-            await fileSystem.rmdir(destination);
-            response.send(`Disease Detected for ${JSON.stringify(detection)}`);
+            const { result } = detection;
+            if (!result) {
+                deleteTemporaryFolder(file);
+                request.flash('error', `Sorry, we couldn't detect disease of your crop! Please consider retaking the image.`);
+                return response.status(400).redirect('/crops/plant-disease-detection');
+            }
+            await response.render('crops/Detect Plant Disease', { title: "Kheti Sahayak | Plant Disease Detection", detection });
+            await deleteTemporaryFolder(file);
         } catch (error) {
             return next(new ApplicationError(error, "Python Server Error"));
         }

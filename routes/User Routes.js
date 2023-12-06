@@ -25,9 +25,6 @@ const isAlreadyLoggedOut = require("../utilities/Authentication/Check If Already
 // Login-Register --> Form to login / register a user.
 router.get('/', isAlreadyLoggedIn, User.renderForm);
 
-// Discuss --> Open Discussion Forum.
-router.get('/discuss', isLoggedIn, User.openDiscussionForum);
-
 // Create --> Create a new user account.
 router.post('/register', handleAsyncErrors(User.createUser));
 

@@ -187,7 +187,7 @@ def disease_prediction_cli(response, model):
         _, predicted_class = torch.max(predictions, dim=1)
         predicted_disease = disease_classes[predicted_class[0].item()]
 
-        response['result'] = f"Predicted disease: {disease_dic[predicted_disease]}"
+        response['result'] = f"{disease_dic[predicted_disease]}"
     except Exception as e:
         response['error'] =  f"Error predicting disease. Please try retaking the image."
 
