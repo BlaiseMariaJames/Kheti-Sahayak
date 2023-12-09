@@ -1,0 +1,44 @@
+@startuml Crop Recommendation
+title Class Diagram for Crop Recommendation
+
+class User {
+    + username: string
+    + password: string
+    + soil_data: object
+    + sendGETRequest()
+    + sendPOSTRequest()
+}
+
+class NodeJSServer {
+    + soil_data: object
+    + handleGETRequest()
+    + handlePOSTRequest()
+}
+
+class Middleware {
+    + soil_data: object
+    + connectToPython()
+}
+
+class PythonServer {
+    + soil_data: object
+    + mainMenu()
+    + executeCropRecommendation()
+}
+
+class WeatherAPI {
+    + soil_data: object
+    + fetchWeatherData()
+}
+
+class MachineLearningModel {
+    + soil_data: object
+    + recommendCrop()
+}
+
+User -- NodeJSServer : HTTP Request
+NodeJSServer -- Middleware : Call
+Middleware -- PythonServer : Connect
+PythonServer -- WeatherAPI : Call
+PythonServer -- MachineLearningModel : Call
+@enduml

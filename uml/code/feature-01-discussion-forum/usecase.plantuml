@@ -1,0 +1,17 @@
+@startuml CRUD Operations for a Story
+title Combined Use Case Diagram for CRUD Operations on a Story
+
+actor User as U
+rectangle "CRUD Operations on a Story" {
+    usecase "Delete Story" as Delete
+    usecase "Manage Story Images" as Manage
+    usecase "Edit Story" as Edit
+    usecase "View Story Details" as View
+    usecase "Create New Story" as Create
+    U --> View
+    U --> Create
+    U --> Edit
+    U --> Manage
+    U --> Delete
+}
+@enduml

@@ -1,0 +1,13 @@
+@startuml Plant Disease Detection
+title Use Case Diagram for Plant Disease Detection
+
+actor User as U
+rectangle "Plant Disease Detection System" {
+    usecase "Submit Plant Image" as Submit
+    usecase "Render Upload Form" as Render
+    usecase "Receive Disease Prediction" as Receive
+    U --> Render
+    U --> Submit
+    Submit --> Receive
+}
+@enduml

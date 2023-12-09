@@ -1,0 +1,45 @@
+@startuml Fertilizer Recommendation
+title Class Diagram for Fertilizer Recommendation
+
+class User {
+    + username: string
+    + password: string
+    + soil_data: object
+    + sendGETRequest()
+    + sendPOSTRequest()
+}
+
+class NodeJSServer {
+    + soil_data: object
+    + handleGETRequest()
+    + handlePOSTRequest()
+}
+
+class Middleware {
+    + soil_data: object
+    + connectToPython()
+}
+
+class PythonServer {
+    + soil_data: object
+    + mainMenu()
+    + executeFertilizerRecommendation()
+}
+
+class FertilizerRecommendationCLI {
+    + soil_data: object
+    + calculateAbsoluteDifference()
+    + recommendFertilizerSteps()
+}
+
+class FertilizerSteps {
+    + soil_data: object
+    + recommendation: dictionary
+}
+
+User -- NodeJSServer : HTTP Request
+NodeJSServer -- Middleware : Call
+Middleware -- PythonServer : Connect
+PythonServer -- FertilizerRecommendationCLI : Call
+FertilizerRecommendationCLI -- FertilizerSteps : Call
+@enduml

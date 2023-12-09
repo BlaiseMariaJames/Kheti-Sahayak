@@ -1,0 +1,38 @@
+@startuml Fertilizer Recommendation
+title Sequence Diagram for Fertilizer Recommendation
+
+actor User as U
+participant "Node JS Server at\n/crops/fertilizer-recommendation" as WS
+participant "Middleware\nconnect()" as M
+participant "Python Server" as PS
+participant "Fertilizer Recommendation CLI" as FR
+participant "Steps of\nFertilizer Recommendation\n(Python Dictionary)" as FD
+
+U -> WS: GET Request
+activate WS
+WS -> U: Render Form
+deactivate WS
+U -> WS: Submit Form (POST Request)
+activate WS
+WS -> WS: Server Side Validation
+WS --> M: Call Middleware connect()
+activate M
+M --> PS: Connect to Python (Child Process)
+activate PS
+PS -> PS: Main Menu
+PS -> FR: Execute Fertilizer Recommendation CLI
+activate FR
+FR -> FR: Calculate Absolute Difference of NPK Values (Custom Logic)
+FR -> FD: Recommend Fertilizer Steps Based on Highest Absolute Difference
+activate FD
+FD -> FR: Fertilizer Steps Recommended (Recommendation Result)
+deactivate FD
+FR -> PS: Recommendation Result
+deactivate FR
+PS -> M: Recommendation Result
+deactivate PS
+M -> WS: Recommendation Result
+deactivate M
+WS -> U: Render Output
+deactivate WS
+@enduml

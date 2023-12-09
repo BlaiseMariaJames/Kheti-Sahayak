@@ -4,6 +4,14 @@
   </ul>
 </div>
 
+<h3>Final Commit - December 9th 2023</h3>
+
+_Committed on December 9, 2023_
+
+1. Upload UML code and diagrams for various Kheti Sahayak features.
+2. Upload Report and PPT of Kheti Sahayak.
+3. Update README.md
+  
 <h3>Feature 4: Disease Prediction Completion with bugs fixed - December 7th 2023</h3>
 
 _Committed on December 7, 2023_

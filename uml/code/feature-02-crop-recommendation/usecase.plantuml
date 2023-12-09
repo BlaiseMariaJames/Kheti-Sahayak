@@ -1,0 +1,13 @@
+@startuml Crop Recommendation
+title Use Case Diagram for Crop Recommendation
+
+actor User as U
+rectangle "Crop Recommendation System" {
+    usecase "Submit Crop Recommendation Form" as Submit
+    usecase "Render Crop Recommendation Form" as Render
+    usecase "Receive Recommendation Output" as Receive
+    U --> Render
+    U --> Submit
+    Submit --> Receive
+}
+@enduml

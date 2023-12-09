@@ -1,0 +1,51 @@
+@startuml CRUD Operations for a Story
+title Combined Class Diagram for CRUD Operations on a Story
+
+class User {
+    + username: string
+    + password: string
+    + viewStoryDetails()
+    + createNewStory()
+    + editStory()
+    + manageStoryImages()
+    + deleteStory()
+}
+
+class ClientBrowser {
+    + sendGETRequest()
+    + sendPOSTRequest()
+    + sendPATCHRequest()
+    + sendPUTRequest()
+    + sendDELETERequest()
+}
+
+class NodeJSServer {
+    + handleGETRequest()
+    + handlePOSTRequest()
+    + handlePATCHRequest()
+    + handlePUTRequest()
+    + handleDELETERequest()
+}
+
+class Middleware {
+    + connectToDatabase()
+    + connectToCloudinary()
+}
+
+class Cloudinary {
+    + uploadImages()
+    + deleteImages()
+}
+
+class MongoDB {
+    + saveStoryData()
+    + updateStoryData()
+    + deleteStoryData()
+}
+
+User -- ClientBrowser : HTTP Request
+ClientBrowser -- NodeJSServer : HTTP Request
+NodeJSServer -- Middleware : Call
+Middleware -- Cloudinary : Call
+Middleware -- MongoDB : Call
+@enduml

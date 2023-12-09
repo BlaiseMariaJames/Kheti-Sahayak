@@ -1,0 +1,13 @@
+@startuml Fertilizer Recommendation
+title Use Case Diagram for Fertilizer Recommendation
+
+actor User as U
+rectangle "Fertilizer Recommendation System" {
+    usecase "Submit Fertilizer Recommendation Form" as Submit
+    usecase "Render Fertilizer Recommendation Form" as Render
+    usecase "Receive Fertilizer Recommendation Output" as Receive
+    U --> Render
+    U --> Submit
+    Submit --> Receive
+}
+@enduml

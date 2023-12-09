@@ -1,0 +1,42 @@
+@startuml Crop Recommendation
+title Sequence Diagram for Crop Recommendation
+
+actor User as U
+participant "Node JS Server at\n/crops/crop-recommendation" as WS
+participant "Middleware\nconnect()" as M
+participant "Python Server" as PS
+participant "Crop Recommendation CLI" as CR
+participant "Weather API" as API
+participant "Machine Learning Model" as ML
+
+U -> WS: GET Request
+activate WS
+WS -> U: Render Form
+deactivate WS
+U -> WS: Submit Form (POST Request)
+activate WS
+WS -> WS: Server Side Validation
+WS --> M: Call Middleware connect()
+activate M
+M --> PS: Connect to Python (Child Process)
+activate PS
+PS -> PS: Main Menu
+PS -> CR: Execute Crop Recommendation CLI
+activate CR
+CR --> API: Fetch Weather Data
+activate API
+API -> CR: Weather Data Fetched
+deactivate API
+CR --> ML: Recommend Crop
+activate ML
+ML -> CR: Crop Recommended (Recommendation Result)
+deactivate ML
+CR -> PS: Recommendation Result
+deactivate CR
+PS -> M: Recommendation Result
+deactivate PS
+M -> WS: Recommendation Result
+deactivate M
+WS -> U: Render Output
+deactivate WS
+@enduml

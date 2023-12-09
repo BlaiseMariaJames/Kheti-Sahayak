@@ -1,0 +1,49 @@
+@startuml User Authentication
+title Class Diagram for User Authentication
+
+class User {
+    + username: string
+    + password: string
+    + accessLoginSignup()
+    + accessLogout()
+}
+
+class ClientBrowser {
+    + sendGETRequest()
+    + sendPOSTRequest()
+}
+
+class NodeJSServer {
+    + handleGETRequest()
+    + handlePOSTRequest()
+}
+
+class UserController {
+    + createUser()
+    + validateUser()
+    + authenticateUser()
+    + logoutUser()
+}
+
+class Passport {
+    + registerUser()
+    + authenticateUser()
+    + logoutUser()
+}
+
+class MongoDB {
+    + saveUser()
+}
+
+class ExpressSessions {
+    + createUserSession()
+    + clearUserSession()
+}
+
+User -- ClientBrowser : HTTP Request
+ClientBrowser -- NodeJSServer : HTTP Request
+NodeJSServer -- UserController : Call
+UserController -- Passport : Call
+UserController -- MongoDB : Call
+UserController -- ExpressSessions : Call
+@enduml

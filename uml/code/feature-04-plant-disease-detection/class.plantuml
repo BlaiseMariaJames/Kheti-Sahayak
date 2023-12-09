@@ -1,0 +1,40 @@
+@startuml Plant Disease Detection
+title Class Diagram for Plant Disease Detection
+
+class User {
+    + username: string
+    + password: string
+    + image: Image
+    + sendGETRequest()
+    + sendPOSTRequest()
+}
+
+class NodeJSServer {
+    + image: Image
+    + handleGETRequest()
+    + handlePOSTRequest()
+}
+
+class Middleware {
+    + image: Image
+    + connectToPython()
+}
+
+class PythonServer {
+    + image: Image
+    + mainMenu()
+    + executeDiseasePrediction()
+}
+
+class DiseasePredictionCLI {
+    + image: Image
+    + loadModel()
+    + processImage()
+    + makePrediction()
+}
+
+User -- NodeJSServer : HTTP Request
+NodeJSServer -- Middleware : Call
+Middleware -- PythonServer : Connect
+PythonServer -- DiseasePredictionCLI : Call
+@enduml

@@ -1,0 +1,33 @@
+@startuml Plant Disease Detection
+title Sequence Diagram for Plant Disease Detection
+
+actor User as U
+participant "Node JS Server at\n/crops/plant-disease-detection" as WS
+participant "Middleware\nconnect()" as M
+participant "Python Server" as PS
+participant "Disease Prediction CLI" as DP
+
+U -> WS: GET Request
+activate WS
+WS -> U: Render Form
+deactivate WS
+U -> WS: Submit Form (POST Request)
+activate WS
+WS -> WS: Server Side Validation
+WS --> M: Call Middleware connect()
+activate M
+M --> PS: Connect to Python (Child Process)
+activate PS
+PS -> PS: Main Menu
+PS -> DP: Execute Disease Prediction CLI
+activate DP
+DP --> DP: Load Pre-trained Model\nand Process Image
+DP -> PS: Prediction Result
+deactivate DP
+PS -> M: Prediction Result
+deactivate PS
+M -> WS: Prediction Result
+deactivate M
+WS -> U: Render Output
+deactivate WS
+@enduml

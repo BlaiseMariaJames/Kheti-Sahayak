@@ -1,0 +1,105 @@
+@startuml CRUD Operations for a Story
+title Combined Sequence Diagram for CRUD Operations on a Story
+
+actor User as U
+participant "Client Browser" as CB
+participant "Node JS Server\nat /stories" as NS
+participant "MongoDB" as DB
+participant "Cloudinary" as CDN
+
+U -> CB: Create Story
+activate CB
+CB -> NS: GET Request at /stories/new
+activate NS
+NS -> U: Render New Story Form
+deactivate NS
+U -> CB: Submit New Story Form
+CB -> NS: Submit Form (POST Request)
+activate NS
+NS --> CDN: Upload Story Images
+activate CDN
+CDN -> NS: Images Uploaded
+deactivate CDN
+NS --> DB: Save Story Data
+activate DB
+DB -> NS: Story Saved
+deactivate DB
+NS -> CB: Redirect to Created Story
+deactivate NS
+CB -> U: View Created Story
+deactivate CB
+
+U -> CB: View All Stories 
+activate CB
+CB -> NS: GET Request at /stories
+activate NS
+deactivate CB
+NS -> U: Render All Stories
+deactivate NS
+
+U -> CB: View Story 
+activate CB
+CB -> NS: GET Request at /stories/:id
+activate NS
+deactivate CB
+NS -> U: Render Story Details
+deactivate NS
+
+U -> CB: Edit Story 
+activate CB
+CB -> NS: GET Request at /stories/:id/edit
+activate NS
+NS -> U: Render Edit Story Form
+deactivate NS
+U -> CB: Submit Edit Story Form
+CB -> NS: Submit Form (PATCH Request)
+activate NS
+NS --> DB: Update Story Data
+activate DB
+DB -> NS: Story Updated
+deactivate DB
+NS -> CB: Redirect to Updated Story
+deactivate NS
+CB -> U: View Updated Story
+deactivate CB
+
+U -> CB: Manage Story Images
+activate CB
+CB -> NS: GET Request at /stories/:id/manage
+activate NS
+NS -> U: Render Manage Images Form
+deactivate NS
+U -> CB: Submit Manage Images Form
+CB -> NS: Submit Form (PUT Request)
+activate NS
+NS -> CDN: Upload/Delete Images
+activate CDN
+CDN --> NS: Images Uploaded/Deleted
+deactivate CDN
+NS -> DB: Update Story Data
+activate DB
+DB --> NS: Story Updated
+deactivate DB
+NS -> CB: Redirect to Updated Story
+deactivate NS
+CB -> U: View Updated Story
+deactivate CB
+
+U -> CB: Delete Story
+activate CB
+CB -> NS: GET Request at /stories/:id/remove
+activate NS
+NS -> U: Render Remove Story Form
+deactivate NS
+U -> CB: Submit Remove Story Form
+CB -> NS: Submit Form (DELETE Request)
+activate NS
+NS -> DB: Delete Story Data
+activate DB
+DB --> NS: Story Deleted
+deactivate DB
+NS -> CB: Redirect to Stories Index
+deactivate NS
+CB -> U: View Stories Index
+deactivate CB
+@enduml

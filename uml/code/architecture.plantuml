@@ -1,0 +1,52 @@
+@startuml Kheti Sahayak Architecture
+title Kheti Sahayak Architecture
+package "Client Side" {
+    actor User as U
+    agent "Client Browser" as CB
+}
+
+package "Server Side" {
+    agent "\tNode JS Server\t" as NS
+    agent "User Controller.js" as UC
+    agent "Passport.js" as P
+    agent "MongoDB" as DB
+    agent "Cloudinary" as CDN
+    agent "Crop Recommendation Controller.js" as CRC
+    agent "Fertilizer Recommendation Controller.js" as FRC
+    agent "Plant Disease Detection Controller.js" as PDC
+    agent "Crop Recommendation Service" as CRS
+    agent "Fertilizer Recommendation Service" as FRS
+    agent "Plant Disease Detection Service" as PDS
+}
+
+U -> CB: Access Page
+CB -> NS: "\nRequest"
+NS -> UC: Render Page
+UC -> P: Authenticate
+P -> DB: Query
+DB -> NS: Data
+NS -> CDN: Manage Images
+NS -> CB: "\n\n\n\n\nResponse"
+CB -> U: View Page
+
+U -> NS: "\n\n\n\nCrop Recommendation"
+NS -> CRC: Request
+CRC -> CRS: Recommend Crop
+CRS --> CRC: Crop Recommended
+CRC --> NS: Response
+NS -> U: "\n\n\n\n\n\nRecommend Crop"
+
+U -> NS: "\n\n\n\n\n\n\n\nFertilizer Recommendation"
+NS -> FRC: Request
+FRC -> FRS: Recommend Fertilizer
+FRS --> FRC: Fertilizer Recommended
+FRC --> NS: Response
+NS -> U: "\n\n\n\n\n\n\n\n\n\nRecommend Fertilizer"
+
+U -> NS: "\n\n\n\n\n\n\n\n\n\n\n\nPlant Disease Detection"
+NS -> PDC: Request
+PDC -> PDS: Detect Disease
+PDS --> PDC: Disease Detected
+PDC --> NS: Response
+NS -> U: "\n\n\n\n\n\n\n\n\n\n\n\n\n\nDetect Disease"
+@enduml

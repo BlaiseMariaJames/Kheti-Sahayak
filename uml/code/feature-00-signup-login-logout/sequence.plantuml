@@ -1,0 +1,95 @@
+@startuml User Authentication
+title Sequence Diagram for User Authentication
+
+actor User as U
+participant "Client Browser" as CB
+participant "Node JS Server" as NS
+participant "User Controller.js" as UC
+participant "Passport.js" as P
+participant "MongoDB" as DB
+participant "Express Sessions" as S
+
+U -> CB: Access Login/Signup Page
+activate CB
+CB -> NS: GET Request at /
+activate NS
+NS --> NS: Check If Already Logged In
+NS -> UC: Render Login/Signup Page
+activate UC
+deactivate NS
+UC -> CB: Login/Signup Page Rendered
+deactivate UC
+U -> CB: Submit Signup Form
+CB -> NS: POST Request at /register
+activate NS
+NS -> UC: Create User
+activate UC
+UC -> UC: Validate User
+UC --> P: Register User
+activate P
+P -> UC: User Registered
+deactivate P
+UC --> DB: Save User
+activate DB
+DB -> UC: User Saved
+deactivate DB
+UC -> NS: Success Response
+deactivate UC
+NS -> CB: Redirect to Stories Page
+deactivate NS
+CB -> U: View Stories Page
+deactivate CB
+
+U -> CB: Access Login/Signup Page
+activate CB
+CB -> NS: GET Request at /
+activate NS
+NS --> NS: Check If Already Logged In
+NS -> UC: Render Login/Signup Page
+activate UC
+deactivate NS
+UC -> CB: Login/Signup Page Rendered
+deactivate UC
+U -> CB: Submit Login Form
+CB -> NS: POST Request at /login
+activate NS
+NS -> UC: Login User
+activate UC
+UC -> UC: Validate User
+UC --> P: Authenticate User
+activate P
+P -> UC: User Authenticated
+deactivate P
+UC -> S: Create User Session
+activate S
+S -> UC: User Session Created
+deactivate S
+UC -> NS: Success Response
+deactivate UC
+NS -> CB: Redirect to Stories Page
+deactivate NS
+CB -> U: View Stories Page
+deactivate CB
+
+U -> CB: Logout Request
+activate CB
+CB -> NS: POST Request at /logout
+activate NS
+NS --> NS: Check If Already Logged Out
+NS -> UC: Logout User
+activate UC
+UC --> P: Logout User
+activate P
+P -> UC: User Logged Out
+deactivate P
+UC -> S: Clear User Session
+activate S
+S -> UC: User Session Cleared
+deactivate S
+UC -> NS: Success Response
+deactivate UC
+NS -> CB: Redirect to Login/Signup Page
+deactivate NS
+CB -> U: View Login/Signup Page
+deactivate CB
+@enduml

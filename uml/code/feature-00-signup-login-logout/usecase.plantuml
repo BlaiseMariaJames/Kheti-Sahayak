@@ -1,0 +1,13 @@
+@startuml User Authentication
+title Use Case Diagram for User Authentication
+
+actor User as U
+rectangle "User Authentication" {
+    usecase "Logout" as Logout
+    usecase "Login" as Login
+    usecase "Signup" as Signup
+    U --> Signup
+    U --> Login
+    U --> Logout
+}
+@enduml
